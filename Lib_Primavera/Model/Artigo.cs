@@ -19,5 +19,29 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
+        public double STKAtual
+        {
+            get;
+            set;
+        }
+
+        public string Categoria
+        {
+            get;
+            set;
+        }
+
+        public string NomeArtigo
+        {
+            get;
+            set;
+        }
+
+        public double Preco
+        {
+            get;
+            set;
+        }
+
     }
 }

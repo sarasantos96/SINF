@@ -41,11 +41,12 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string Moeda
+        public string Email
         {
             get;
             set;
         }
+
 
     }
 }

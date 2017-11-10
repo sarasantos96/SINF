@@ -13,9 +13,10 @@ namespace FirstREST.Lib_Primavera
     public class PriIntegration
     {
         
-
+        //--------------------------------CLIENT--------------------------------------------
         # region Cliente
 
+        //GET all clients
         public static List<Model.Cliente> ListaClientes()
         {
             
@@ -29,7 +30,7 @@ namespace FirstREST.Lib_Primavera
 
                 //objList = PriEngine.Engine.Comercial.Clientes.LstClientes();
 
-                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, Moeda, NumContrib as NumContribuinte, Fac_Mor AS campo_exemplo FROM  CLIENTES");
+                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, NumContrib as NumContribuinte FROM  CLIENTES");
 
                 
                 while (!objList.NoFim())
@@ -38,9 +39,7 @@ namespace FirstREST.Lib_Primavera
                     {
                         CodCliente = objList.Valor("Cliente"),
                         NomeCliente = objList.Valor("Nome"),
-                        Moeda = objList.Valor("Moeda"),
                         NumContribuinte = objList.Valor("NumContribuinte"),
-                        Morada = objList.Valor("campo_exemplo")
                     });
                     objList.Seguinte();
 
@@ -52,37 +51,32 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
+        //GET client by id
         public static Lib_Primavera.Model.Cliente GetCliente(string codCliente)
         {
-            
 
-            GcpBECliente objCli = new GcpBECliente();
+
+            StdBELista objCli;
 
 
             Model.Cliente myCli = new Model.Cliente();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                objCli = PriEngine.Engine.Consulta("SELECT c.Cliente as ID, c.Nome as NomeCliente, c.NumContrib as NumbContrib, c.Fac_Mor as Morada FROM CLIENTES AS c WHERE c.Cliente ='" + codCliente + "'");
 
-                if (PriEngine.Engine.Comercial.Clientes.Existe(codCliente) == true)
-                {
-                    objCli = PriEngine.Engine.Comercial.Clientes.Edita(codCliente);
-                    myCli.CodCliente = objCli.get_Cliente();
-                    myCli.NomeCliente = objCli.get_Nome();
-                    myCli.Moeda = objCli.get_Moeda();
-                    myCli.NumContribuinte = objCli.get_NumContribuinte();
-                    myCli.Morada = objCli.get_Morada();
-                    return myCli;
-                }
-                else
-                {
-                    return null;
-                }
+                myCli.CodCliente = objCli.Valor("ID");
+                myCli.Morada = objCli.Valor("Morada");
+                myCli.NomeCliente = objCli.Valor("NomeCliente");
+                myCli.NumContribuinte = objCli.Valor("NumbContrib");
+                
+                return myCli;                
             }
             else
                 return null;
         }
 
+        //UPDATE client information
         public static Lib_Primavera.Model.RespostaErro UpdCliente(Lib_Primavera.Model.Cliente cliente)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
@@ -110,9 +104,8 @@ namespace FirstREST.Lib_Primavera
 
                         objCli.set_Nome(cliente.NomeCliente);
                         objCli.set_NumContribuinte(cliente.NumContribuinte);
-                        objCli.set_Moeda(cliente.Moeda);
                         objCli.set_Morada(cliente.Morada);
-
+                        
                         PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
 
                         erro.Erro = 0;
@@ -139,7 +132,7 @@ namespace FirstREST.Lib_Primavera
 
         }
 
-
+        //DELETE client
         public static Lib_Primavera.Model.RespostaErro DelCliente(string codCliente)
         {
 
@@ -186,7 +179,7 @@ namespace FirstREST.Lib_Primavera
         }
 
 
-
+        //CREATE client
         public static Lib_Primavera.Model.RespostaErro InsereClienteObj(Model.Cliente cli)
         {
 
@@ -203,7 +196,6 @@ namespace FirstREST.Lib_Primavera
                     myCli.set_Cliente(cli.CodCliente);
                     myCli.set_Nome(cli.NomeCliente);
                     myCli.set_NumContribuinte(cli.NumContribuinte);
-                    myCli.set_Moeda(cli.Moeda);
                     myCli.set_Morada(cli.Morada);
 
                     PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
@@ -232,39 +224,31 @@ namespace FirstREST.Lib_Primavera
 
        
 
-        #endregion Cliente;   // -----------------------------  END   CLIENTE    -----------------------
+        #endregion Cliente;   
 
 
+        //------------------------------ PRODUCT ------------------------------------------------
         #region Artigo
 
+        //GET product by id
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
         {
-            
-            GcpBEArtigo objArtigo = new GcpBEArtigo();
-            Model.Artigo myArt = new Model.Artigo();
+            StdBELista objList;
+            Model.Artigo artigo = new Model.Artigo();
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
+                //TODO: Falta categoria, nome e preco
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual FROM  ARTIGO AS a WHERE a.Artigo ='"+codArtigo+"'");
 
-                if (PriEngine.Engine.Comercial.Artigos.Existe(codArtigo) == false)
-                {
-                    return null;
-                }
-                else
-                {
-                    objArtigo = PriEngine.Engine.Comercial.Artigos.Edita(codArtigo);
-                    myArt.CodArtigo = objArtigo.get_Artigo();
-                    myArt.DescArtigo = objArtigo.get_Descricao();
+                artigo.CodArtigo = objList.Valor("ID");
+                artigo.DescArtigo = objList.Valor("DescArtigo");
+                artigo.STKAtual = objList.Valor("STKActual");
 
-                    return myArt;
-                }
-                
+                return artigo;
             }
             else
-            {
                 return null;
-            }
-
         }
 
         public static List<Model.Artigo> ListaArtigos()
@@ -285,7 +269,9 @@ namespace FirstREST.Lib_Primavera
                     art = new Model.Artigo();
                     art.CodArtigo = objList.Valor("artigo");
                     art.DescArtigo = objList.Valor("descricao");
-
+                  //art.STKAtual = objList.Valor("stkatual");
+                  
+                    
                     listArts.Add(art);
                     objList.Seguinte();
                 }
@@ -302,11 +288,23 @@ namespace FirstREST.Lib_Primavera
         }
 
         #endregion Artigo
-
-   
-
-        #region DocCompra
         
+       
+        //--------------------------- CATEGORIES ----------------------------
+
+        #region Categoria
+
+        #endregion Cateria
+
+
+        //---------------------- WAREHOUSES-----------------------------------
+        #region Armazem
+        #endregion Armazem
+
+     
+        //-----------------------ORDERS------------------------------------------
+        #region DocCompra
+
 
         public static List<Model.DocCompra> VGR_List()
         {
