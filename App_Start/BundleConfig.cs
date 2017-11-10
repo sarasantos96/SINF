@@ -18,6 +18,12 @@ namespace FirstREST
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/bootstrapjs").Include(
+                        "~/Scripts/bootstrap.bundle.js",
+                        "~/Scripts/bootstrap.bundle.min.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootstrap.min.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -38,6 +44,14 @@ namespace FirstREST
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new StyleBundle("~/Content/bootstrapcss").Include(
+                        "~/Content/bootstrap-grid.css",
+                        "~/Content/bootstrap-grid.min.css",
+                        "~/Content/bootstrap-reboot.css",
+                        "~/Content/bootstrap-reboot.min.css",
+                        "~/Content/bootstrap.css",
+                        "~/Content/bootstrap.min.css"));
         }
     }
 }
