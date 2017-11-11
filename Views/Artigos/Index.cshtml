@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    @{ Html.RenderAction("Artigos", "Artigos"); }
+    @{ Html.RenderAction("Artigo", "Artigos", new { id = "A0006" }); }
+</div>
