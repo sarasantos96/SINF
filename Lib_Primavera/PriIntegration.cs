@@ -238,12 +238,13 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                //TODO: Falta categoria, nome e preco
-                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual FROM  ARTIGO AS a WHERE a.Artigo ='"+codArtigo+"'");
+                //TODO: Falta categoria
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual, ArtigoMoeda.PVP1 as PVP FROM  ARTIGO AS a  LEFT JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = a.Artigo WHERE a.Artigo ='" + codArtigo + "'");
 
                 artigo.CodArtigo = objList.Valor("ID");
                 artigo.DescArtigo = objList.Valor("DescArtigo");
                 artigo.STKAtual = objList.Valor("STKActual");
+                artigo.Preco = objList.Valor("PVP");
 
                 return artigo;
             }
@@ -251,6 +252,8 @@ namespace FirstREST.Lib_Primavera
                 return null;
         }
 
+
+        //GET all products
         public static List<Model.Artigo> ListaArtigos()
         {
                         
@@ -262,16 +265,16 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Comercial.Artigos.LstArtigos();
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual, ArtigoMoeda.PVP1 as PVP, Familias.Descricao as Categoria FROM  ARTIGO AS a  LEFT JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = a.Artigo LEFT JOIN Familias ON Familias.Familia = a.Familia;");
 
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
-                    art.CodArtigo = objList.Valor("artigo");
-                    art.DescArtigo = objList.Valor("descricao");
-                  //art.STKAtual = objList.Valor("stkatual");
-                  
-                    
+                    art.CodArtigo = objList.Valor("ID");
+                    art.DescArtigo = objList.Valor("DescArtigo");
+                    art.STKAtual = objList.Valor("STKActual");
+                    art.Preco = objList.Valor("PVP");
+                    art.Categoria = objList.Valor("Categoria");
                     listArts.Add(art);
                     objList.Seguinte();
                 }
@@ -287,6 +290,10 @@ namespace FirstREST.Lib_Primavera
 
         }
 
+
+
+        //TODO: GET all products from category
+
         #endregion Artigo
         
        
@@ -294,11 +301,144 @@ namespace FirstREST.Lib_Primavera
 
         #region Categoria
 
-        #endregion Cateria
+        //GET all categories
+        public static List<Model.Categoria> ListaCategorias()
+        {
+            StdBELista objList;
+
+            Model.Categoria arm = new Model.Categoria();
+            List<Model.Categoria> listArms = new List<Model.Categoria>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Comercial.Artigos.LstArtigos();
+
+                objList = PriEngine.Engine.Consulta("SELECT Familia as Categoria, Descricao as Nome FROM FAMILIAS");
+
+
+                while (!objList.NoFim())
+                {
+                    listArms.Add(new Model.Categoria
+                    {
+                        CodCategoria = objList.Valor("Categoria"),
+                        NomeCategoria = objList.Valor("Nome"),
+                    });
+                    objList.Seguinte();
+
+                }
+
+                return listArms;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+        //GET category by id
+        public static Model.Categoria GetCategoria(string codCategoria)
+        {
+
+            StdBELista objList;
+
+            Model.Categoria cat = new Model.Categoria();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT f.Familia as Categoria, f.Descricao as Nome FROM FAMILIAS AS f WHERE f.Familia ='" + codCategoria + "'");
+
+                cat.CodCategoria = objList.Valor("Categoria");
+                cat.NomeCategoria = objList.Valor("Nome");
+
+                return cat;
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+
+        #endregion Categoria
 
 
         //---------------------- WAREHOUSES-----------------------------------
         #region Armazem
+
+
+        //GET all warehouses
+        public static List<Model.Armazem> ListaArmazens()
+        {
+
+            StdBELista objList;
+
+            Model.Armazem arm = new Model.Armazem();
+            List<Model.Armazem> listArms = new List<Model.Armazem>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Comercial.Artigos.LstArtigos();
+
+                objList = PriEngine.Engine.Consulta("SELECT Armazem, Descricao, Morada, Localidade FROM  ARMAZENS");
+
+
+                while (!objList.NoFim())
+                {
+                    listArms.Add(new Model.Armazem
+                    {
+                       CodArmazem = objList.Valor("Armazem"),
+                       Morada = objList.Valor("Morada"),
+                       Descricao = objList.Valor("Descricao"),
+                       Localidade = objList.Valor("Localidade"),
+                    });
+                    objList.Seguinte();
+
+                }
+
+                return listArms;
+
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
+        //GET warehouse by id
+        public static Model.Armazem GetArmazem(string codArmazem)
+        {
+
+            StdBELista objList;
+
+            Model.Armazem arm = new Model.Armazem();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT a.Armazem as CodArmazem, a.Descricao as Descricao, a.Morada as Morada, a.Localidade as Localidade FROM  ARMAZENS AS a WHERE a.Armazem ='"+codArmazem+"'");
+
+                arm.CodArmazem = objList.Valor("CodArmazem");
+                arm.Morada = objList.Valor("Morada");
+                arm.Descricao = objList.Valor("Descricao");
+                arm.Localidade = objList.Valor("Localidade");
+
+                return arm;
+            }
+            else
+            {
+                return null;
+
+            }
+
+        }
+
         #endregion Armazem
 
      

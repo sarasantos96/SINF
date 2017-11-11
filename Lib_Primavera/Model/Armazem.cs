@@ -12,5 +12,23 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+
+        public string Morada
+        {
+            get;
+            set;
+        }
+
+        public string Descricao
+        {
+            get;
+            set;
+        }
+
+        public string Localidade
+        {
+            get;
+            set;
+        }
     }
 }
