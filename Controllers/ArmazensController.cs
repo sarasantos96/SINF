@@ -10,8 +10,26 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class ArmazensController : ApiController
+    public class ArmazensController : Controller
     {
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Armazens()
+        {
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazens();
+            return View();
+        }
+
+        public ActionResult Armazem(string id)
+        {
+            ViewBag.armazem = Lib_Primavera.PriIntegration.GetArmazem(id);
+            return View();
+        }
+        /*
         //
         // GET: /Armazens/
         public IEnumerable<Lib_Primavera.Model.Armazem> Get()
@@ -33,7 +51,7 @@ namespace FirstREST.Controllers
             {
                 return armazem;
             }
-        }
+        }*/
 
     }
 }

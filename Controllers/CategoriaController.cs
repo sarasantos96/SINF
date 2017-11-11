@@ -10,8 +10,25 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class CategoriaController : ApiController
+    public class CategoriaController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Categorias()
+        {
+            ViewBag.listaCategorias = Lib_Primavera.PriIntegration.ListaCategorias();
+            return View();
+        }
+
+        public ActionResult Categoria(string id)
+        {
+            ViewBag.categoria = Lib_Primavera.PriIntegration.GetCategoria(id);
+            return View();
+        }
+        /*
         //
         // GET: /Categoria/
         public IEnumerable<Lib_Primavera.Model.Categoria> Get()
@@ -32,7 +49,7 @@ namespace FirstREST.Controllers
             {
                 return categoria;
             }
-        }
+        }*/
 
     }
 }
