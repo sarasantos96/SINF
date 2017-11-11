@@ -10,14 +10,28 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class DocCompraController : ApiController
+    public class DocCompraController : Controller
     {
 
 
-        public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult DocCompra()
+        {
+            ViewBag.listaVGR = Lib_Primavera.PriIntegration.VGR_List();
+            return View();
+        }
+
+
+        /*public IEnumerable<Lib_Primavera.Model.DocCompra> Get()
         {
             return Lib_Primavera.PriIntegration.VGR_List();
-        }
+        }*/
+
+ 
 
         /*
         // GET api/cliente/5    
@@ -37,7 +51,9 @@ namespace FirstREST.Controllers
         }
         */
 
+        //  ----- POST
 
+        /*
         public HttpResponseMessage Post(Lib_Primavera.Model.DocCompra dc)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
@@ -58,6 +74,7 @@ namespace FirstREST.Controllers
             }
 
         }
+        */
 
     }
 }

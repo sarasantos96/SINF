@@ -11,19 +11,38 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class DocVendaController : ApiController
+    public class DocVendaController : Controller
     {
         //
-        // GET: /Clientes/
+        // GET: /Clientes/s
 
-        public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
+        public ActionResult Index()
         {
-            return Lib_Primavera.PriIntegration.Encomendas_List();
+            return View();
         }
 
+        public ActionResult DocVendas()
+        {
+            ViewBag.listaEncomendas = Lib_Primavera.PriIntegration.Encomendas_List();
+            return View();
+        }
 
-        // GET api/cliente/5    
-        public Lib_Primavera.Model.DocVenda Get(string id)
+        /*public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
+        {
+            return Lib_Primavera.PriIntegration.Encomendas_List();
+        }*/
+
+
+        // GET api/cliente/5 
+
+        public ActionResult DocVenda()
+        {
+            ViewBag.docVenda = Lib_Primavera.PriIntegration.Encomendas_List();
+            return View(); //  -- missing case : docvenda == null !!
+        }
+
+           
+        /*public Lib_Primavera.Model.DocVenda Get(string id)
         {
             Lib_Primavera.Model.DocVenda docvenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
             if (docvenda == null)
@@ -36,10 +55,14 @@ namespace FirstREST.Controllers
             {
                 return docvenda;
             }
-        }
+        }*/
 
 
-        public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
+
+        //  ----- POST
+
+
+       /* public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
@@ -116,5 +139,6 @@ namespace FirstREST.Controllers
             }
 
         }
+        */
     }
 }
