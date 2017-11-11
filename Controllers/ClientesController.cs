@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -9,8 +10,25 @@ using FirstREST.Lib_Primavera.Model;
 
 namespace FirstREST.Controllers
 {
-    public class ClientesController : ApiController
+    public class ClientesController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Clientes()
+        {
+            ViewBag.listaClientes = Lib_Primavera.PriIntegration.ListaClientes();
+            return View();
+        }
+
+        public ActionResult Cliente(string id)
+        {
+            ViewBag.cliente = Lib_Primavera.PriIntegration.GetCliente(id);
+            return View();
+        }
+        /*
         //
         // GET: /Clientes/
 
@@ -113,8 +131,7 @@ namespace FirstREST.Controllers
 
             }
 
-        }
-
-
+        }*/
+        
     }
 }
