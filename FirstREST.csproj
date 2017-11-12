@@ -194,6 +194,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArmazensController.cs" />
     <Compile Include="Controllers\ArtigosController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
@@ -339,13 +340,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Artigos\Index.cshtml" />
+    <Content Include="Views\Admin\ArtigosStock.cshtml" />
     <Content Include="Views\Artigos\Artigos.cshtml" />
     <Content Include="Views\Artigos\Artigo.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Catalogue\" />
     <Folder Include="Views\Client\" />
