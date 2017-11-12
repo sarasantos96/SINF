@@ -20,5 +20,11 @@ namespace FirstREST.Controllers
             return View();
         }
 
+        public ActionResult ArmazensArtigo(string id)
+        {
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(id);
+            return View();
+        }
+
     }
 }

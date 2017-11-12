@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "ArmazensArtigo";
+}
+
+<div class="lista">
+    @{
+        foreach (var armazem in ViewBag.listaArmazens)
+        {
+            <p>@armazem.CodArmazem</p>
+        }
+    }
+</div>
+

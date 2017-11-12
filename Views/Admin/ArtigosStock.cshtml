@@ -13,6 +13,7 @@
                         <p>@artigo.DescArtigo;</p>
                         <p>@artigo.CodArtigo;</p>
                         <p>@artigo.STKAtual;</p>
+                        @*{ Html.RenderAction("ArmazensArtigo", "Admin", new { id = @artigo.CodArtigo }); } *@
                     </div>
                     
                 </li>

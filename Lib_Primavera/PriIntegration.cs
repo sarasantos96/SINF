@@ -484,7 +484,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Artigo, StkActual FROM ArtigoArmazem  WHERE Armazem =" + codArmazem + "'");
+                objList = PriEngine.Engine.Consulta("SELECT Artigo, StkActual FROM ArtigoArmazem  WHERE Armazem ='" + codArmazem + "'");
 
                 while (!objList.NoFim())
                 {
@@ -496,6 +496,37 @@ namespace FirstREST.Lib_Primavera
                 }
 
                 return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
+        public static List<Model.Armazem> ListaArmazensProduto(string codArtigo)
+        {
+            StdBELista objList;
+
+            Model.Armazem arm = new Model.Armazem();
+            List<Model.Armazem> listArms = new List<Model.Armazem>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT Armazem FROM ArtigoArmazem  WHERE Artigo ='" + codArtigo + "'");
+
+                while (!objList.NoFim())
+                {
+                    arm = new Model.Armazem();
+                    arm.CodArmazem = objList.Valor("Armazem");
+                    
+                    listArms.Add(arm);
+                    objList.Seguinte();
+                }
+
+                return listArms;
 
             }
             else

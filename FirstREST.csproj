@@ -344,6 +344,7 @@
     <Content Include="Views\Artigos\Artigos.cshtml" />
     <Content Include="Views\Artigos\Artigo.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ArmazensArtigo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
