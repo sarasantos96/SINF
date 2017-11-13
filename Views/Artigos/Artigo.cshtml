@@ -3,10 +3,55 @@
 }
 
 <div class="container">
-    <h2>Artigos</h2>
-    <div class="lista">
-        @{
-            <p>@ViewBag.artigo.CodArtigo</p>
-        }
+    <div class="container">
+        <div class="card" style="padding-top:15px;margin-top:20px">
+            <div class="container-fliud" style="padding:15px">
+                <div class="row">
+                    <div class="previewProduct col-md-8">
+                        <img width="600" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                    </div>
+                    <div class="descriptionProduct col-md-4">
+                        @{
+                            <h3 class="product-title">@ViewBag.artigo.DescArtigo</h3>
+                            <p class="product-description">@ViewBag.artigo.CodArtigo</p>
+                        }
+                        
+                        <h3 class="product-details">Product Details</h3>
+                        @{
+                            <h5 class="category">Category: <span>@ViewBag.artigo.Categoria</span></h5>
+                            <h5 class="price">Price: <span>@ViewBag.artigo.Preco</span></h5>
+                        }
+                        
+                        <div class="action">
+                            <button class="add-to-cart btn btn-info" type="button">Add to Cart</button>
+                            <button class="like btn btn-info" type="button"><span class="fa fa-heart"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="margin-top:20px">
+            <div class="container-fliud" style="padding:15px">
+                <h3 class="product-recommendation">Recommendations</h3>
+                <div class="row">
+                    <div class="rec1 col-md-3">
+                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                        <h6>Product Name</h6>
+                    </div>
+                    <div class="rec2 col-md-3">
+                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                        <h6>Product Name</h6>
+                    </div>
+                    <div class="rec3 col-md-3">
+                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                        <h6>Product Name</h6>
+                    </div>
+                    <div class="rec4 col-md-3">
+                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                        <h6>Product Name</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
