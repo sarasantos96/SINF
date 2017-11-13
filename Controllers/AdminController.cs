@@ -16,13 +16,13 @@ namespace FirstREST.Controllers
 
         public ActionResult ArtigosStock()
         {
-            ViewBag.listaArtigos = Lib_Primavera.PriIntegration.ListaArtigos();
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(); 
             return View();
         }
 
-        public ActionResult ArmazensArtigo(string id)
+        public ActionResult ArmazensArtigo()
         {
-            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaProdutosArmazem(id);
+            ViewBag.listaArtigos = Lib_Primavera.PriIntegration.ListaArtigos();
             return View();
         }
 
