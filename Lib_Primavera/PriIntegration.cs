@@ -121,9 +121,7 @@ namespace FirstREST.Lib_Primavera
 
                 }
 
-            }
-
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 erro.Erro = 1;
                 erro.Descricao = ex.Message;
@@ -195,8 +193,9 @@ namespace FirstREST.Lib_Primavera
 
                     myCli.set_Cliente(cli.CodCliente);
                     myCli.set_Nome(cli.NomeCliente);
-                    //myCli.set_NumContribuinte(cli.NumContribuinte);
-                    //myCli.set_Morada(cli.Morada);
+                    myCli.set_NumContribuinte(cli.NumContribuinte);
+                    myCli.set_Morada(cli.Morada);
+                    myCli.set_Moeda("EUR");
 
                     PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
 
@@ -215,6 +214,7 @@ namespace FirstREST.Lib_Primavera
             catch (Exception ex)
             {
                 erro.Erro = 1;
+                String s = ex.Message;
                 erro.Descricao = ex.Message;
                 return erro;
             }
@@ -763,10 +763,10 @@ namespace FirstREST.Lib_Primavera
             {
                 
 
-                string st = "SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='ECL' and NumDoc='" + numdoc + "'";
+                string st = "SELECT a.id as ID, a.Entidade as Entidade, a.Data as Data, a.NumDoc as NumDoc, a.TotalMerc as TotalMerc, a.Serie as Serie From CabecDoc AS a where TipoDoc='ECL' and NumDoc='" + numdoc + "'";
                 objListCab = PriEngine.Engine.Consulta(st);
                 dv = new Model.DocVenda();
-                dv.id = objListCab.Valor("id");
+                dv.id = objListCab.Valor("ID");
                 dv.Entidade = objListCab.Valor("Entidade");
                 dv.NumDoc = objListCab.Valor("NumDoc");
                 dv.Data = objListCab.Valor("Data");
