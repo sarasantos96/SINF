@@ -22,7 +22,7 @@ namespace FirstREST.Controllers
 
         public ActionResult ArmazensArtigo(string id)
         {
-            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(id);
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaProdutosArmazem(id);
             return View();
         }
 
