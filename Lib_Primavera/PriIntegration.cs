@@ -238,13 +238,13 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                //TODO: Falta categoria
-                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual, ArtigoMoeda.PVP1 as PVP FROM  ARTIGO AS a  LEFT JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = a.Artigo WHERE a.Artigo ='" + codArtigo + "'");
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo,a.Familia as Categoria, a.STKActual as STKActual, ArtigoMoeda.PVP1 as PVP FROM  ARTIGO AS a  LEFT JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = a.Artigo WHERE a.Artigo ='" + codArtigo + "'");
 
                 artigo.CodArtigo = objList.Valor("ID");
                 artigo.DescArtigo = objList.Valor("DescArtigo");
                 artigo.STKAtual = objList.Valor("STKActual");
                 artigo.Preco = objList.Valor("PVP");
+                artigo.Categoria = objList.Valor("Categoria");
 
                 return artigo;
             }

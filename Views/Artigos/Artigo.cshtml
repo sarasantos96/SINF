@@ -12,34 +12,16 @@
                     </div>
                     <div class="descriptionProduct col-md-4">
                         @{
-                            <h3 class="product-title">@ViewBag.artigo.CodArtigo</h3>
+                            <h3 class="product-title">@ViewBag.artigo.DescArtigo</h3>
+                            <p class="product-description">@ViewBag.artigo.CodArtigo</p>
                         }
-                        <div class="rating">
-                            <div class="stars">
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star checked"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <span class="review-no">ProductID</span>
-                        </div>
-                        <p class="product-description">Product Description</p>
+                        
                         <h3 class="product-details">Product Details</h3>
-                        <h5 class="price">Price: <span>180€</span></h5>
-                        <h5 class="sizes">
-                            Sizes:
-                            <span class="size" data-toggle="tooltip" title="small">S</span>
-                            <span class="size" data-toggle="tooltip" title="medium">M</span>
-                            <span class="size" data-toggle="tooltip" title="large">L</span>
-                            <span class="size" data-toggle="tooltip" title="xtra large">XL</span>
-                        </h5>
-                        <h5 class="colors">
-                            Colors:
-                            <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
-                            <span class="color green"></span>
-                            <span class="color blue"></span>
-                        </h5>
+                        @{
+                            <h5 class="category">Category: <span>@ViewBag.artigo.Categoria</span></h5>
+                            <h5 class="price">Price: <span>@ViewBag.artigo.Preco</span></h5>
+                        }
+                        
                         <div class="action">
                             <button class="add-to-cart btn btn-info" type="button">Add to Cart</button>
                             <button class="like btn btn-info" type="button"><span class="fa fa-heart"></span></button>
