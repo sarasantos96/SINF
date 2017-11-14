@@ -3,13 +3,14 @@
 }
 
 <div class="container">
-    <h2>Lista Artigos</h2>
-    <div class="lista">
-        @{
-            foreach (var artigo in ViewBag.listaArtigos)
-            {
-                <p>@artigo.CodArtigo</p>
+    
+        <div class="lista">
+            @{
+                foreach (var artigo in ViewBag.listaArtigos)
+                {
+                    <p>@artigo.CodArtigo</p>
+                }
             }
-        }
+        </div>
     </div>
-</div>
+
