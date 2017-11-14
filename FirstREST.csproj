@@ -316,12 +316,13 @@
     <Content Include="Views\Artigos\Artigo.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ArmazensArtigo.cshtml" />
+    <Content Include="Views\Categoria\Categorias.cshtml" />
+    <Content Include="Views\Categoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Catalogue\" />
     <Folder Include="Views\Client\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
