@@ -16,7 +16,7 @@ namespace FirstREST.Controllers
 
         /*public ActionResult ArtigosStock()
         {
-            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(); 
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaProdutosArmazem(); 
             return View();
         }*/
 
