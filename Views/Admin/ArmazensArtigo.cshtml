@@ -2,12 +2,22 @@
     ViewBag.Title = "ArmazensArtigo";
 }
 
-<div class="lista">
-    @{
-        foreach (var armazem in ViewBag.listaArmazens)
-        {
-            <p>@armazem.CodArmazem</p>
+<div class="container">
+    <h2>@ViewBag.armazem.Descricao</h2>
+    <h4>@ViewBag.armazem.CodArmazem</h4>
+    <h5>Product List</h5>
+    <ul class="list-group">
+        @{
+            foreach (var artigo in @ViewBag.listaArtigos)
+            {
+                <li class="list-group-item">
+                    <div>
+                        <p>@artigo.CodArtigo</p>
+                        <p>@artigo.STKAtual</p>
+                    </div>
+                </li>
+            }
         }
-    }
+    </ul>
 </div>
 

@@ -4,16 +4,27 @@
 
 <div class="container">
     <div class="menu">
-        <div class="btn-group-vertical">
-            @{
-                foreach (var categoria in ViewBag.listaCategorias)
-                {
-                    <button type="button" class="btn btn-info">@categoria.NomeCategoria</button>
-                }
+        <div class="row">
+            <div class="col">
+                <div class="mini-menu">
+                    <h3>Categories</h3>
+                    <div class="btn-group-vertical">
+                        @{
+                            foreach (var categoria in ViewBag.listaCategorias)
+                            {
+                                <button type="button" class="btn btn-info" style="border-color:white">@categoria.NomeCategoria</button>
+                            }
 
-            }
-            
-            
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" style="padding-top:40px">
+                @{ Html.RenderAction("Artigos", "Artigos"); }
+                               
+            </div>
         </div>
-     </div>
+    </div>
 </div>
