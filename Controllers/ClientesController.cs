@@ -29,6 +29,11 @@ namespace FirstREST.Controllers
             return View();
         }
 
+        public ActionResult NovoCliente()
+        {
+            return View();
+        }
+
         [System.Web.Http.HttpPut]
         public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
         {
