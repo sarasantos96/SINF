@@ -6,20 +6,12 @@
     <h2>Stock</h2>
     <ul class="list-group">
         @{
-            foreach (var artigo in ViewBag.listaArmazens)
+            foreach (var armazem in ViewBag.listaArmazens)
             {
                 <li  class="list-group-item">
                     <div>
-                        <p>@artigo.Artigo.DescArtigo;</p>
-                        <p>@artigo.Artigo.CodArtigo;</p>
-                        <p>@artigo.Artigo.STKAtual;</p>
-                        @{
-                            foreach (var armazem in artigo.ArmazemStock)
-                            {
-                                <p>@armazem.Key</p>
-                                <p>@armazem.Value</p>
-                            }
-                        }
+                        <a href="/Admin/ArmazensArtigo/@armazem.CodArmazem">@armazem.CodArmazem</a>
+                        <p>@armazem.Descricao</p>
                     </div>
                     
                 </li>

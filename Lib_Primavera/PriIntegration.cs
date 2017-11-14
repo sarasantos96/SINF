@@ -484,7 +484,7 @@ namespace FirstREST.Lib_Primavera
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
 
-                objList = PriEngine.Engine.Consulta("SELECT Artigo, StkActual FROM ArtigoArmazem  WHERE Armazem =" + codArmazem + "'");
+                objList = PriEngine.Engine.Consulta("SELECT Artigo, StkActual FROM ArtigoArmazem  WHERE Armazem ='" + codArmazem + "' ORDER BY Artigo");
 
                 while (!objList.NoFim())
                 {
@@ -505,36 +505,73 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-        public static List<Model.Armazem> ListaArmazensProduto(string codArtigo)
+       /*Might be needed later.
+        * 
+        * public static List<Model.ArtigoArmazem> ListaArmazensProduto()
         {
-            StdBELista objList;
-
-            Model.Armazem arm = new Model.Armazem();
-            List<Model.Armazem> listArms = new List<Model.Armazem>();
-
+            StdBELista objList;
+            Model.ArtigoArmazem armA = new Model.ArtigoArmazem();
+            List<Model.ArtigoArmazem> listArms = new List<Model.ArtigoArmazem>();
+            Boolean newOne = true; 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-
-                objList = PriEngine.Engine.Consulta("SELECT Armazem FROM ArtigoArmazem  WHERE Artigo ='" + codArtigo + "'");
-
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual, arm.Armazem as CodArmazem, arm.Descricao as aDescricao, arm.Localidade as Localidade, arm.Morada as Morada, arma.StkActual as STKArmazem FROM ArtigoArmazem as arma LEFT JOIN Armazens as arm ON arm.Armazem = arma.Armazem LEFT JOIN Artigo as a ON a.Artigo = arma.Artigo");
+                armA = new Model.ArtigoArmazem();
+                string codId = "";
                 while (!objList.NoFim())
-                {
-                    arm = new Model.Armazem();
-                    arm.CodArmazem = objList.Valor("Armazem");
-                    
-                    listArms.Add(arm);
+                {
+                    if (newOne)
+                    {
+                        armA = new Model.ArtigoArmazem();
+                        codId = objList.Valor("ID");
+                        armA.Artigo = new Model.Artigo();
+                        armA.Artigo.CodArtigo = codId;
+                        armA.Artigo.DescArtigo = objList.Valor("DescArtigo");
+                        armA.Artigo.STKAtual = objList.Valor("STKActual");
+                        Model.Armazem armazem = new Model.Armazem();
+                        armazem.CodArmazem = objList.Valor("CodArmazem");
+                        armazem.Descricao = objList.Valor("aDescricao");
+                        armazem.Localidade = objList.Valor("Localidade");
+                        armazem.Morada = objList.Valor("Morada");
+                        armA.Armazens = new List<Model.Armazem>();
+                        armA.Armazens.Add(armazem);
+                        int number = (int)objList.Valor("STKArmazem");
+                        KeyValuePair<String, int> key = new KeyValuePair<string, int>(armazem.CodArmazem, number);
+                        armA.ArmazemStock = new List<KeyValuePair<string, int>>();
+                        armA.ArmazemStock.Add(key);
+                    }
+                    else
+                    {
+                        Model.Armazem armazem = new Model.Armazem();
+                        armazem.CodArmazem = objList.Valor("CodArmazem");                        armazem.Descricao = objList.Valor("aDescricao");
+                        armazem.Localidade = objList.Valor("Localidade");
+                        armazem.Morada = objList.Valor("Morada");                        armA.Armazens.Add(armazem);
+                        int number = (int) objList.Valor("STKArmazem");
+                        KeyValuePair<String, int> key = new KeyValuePair<string, int>(armazem.CodArmazem, number);
+                        
+                        armA.ArmazemStock.Add(key);
+                    }
                     objList.Seguinte();
+                    if (!objList.NoFim())
+                    {                                                string newCod = objList.Valor("ID");
+                        if (newCod != codId)
+                        {
+                            listArms.Add(armA);
+                            newOne = true;
+                        }
+                        else
+                        {
+                            newOne = false;
+                        }
+                    }
                 }
-
                 return listArms;
-
             }
             else
             {
                 return null;
-
-            }
-        }
+            }
+        }*/
 
         #endregion Armazem
 
@@ -879,5 +916,4 @@ namespace FirstREST.Lib_Primavera
         #endregion DocsVenda
     }
 }
-        
-
+       

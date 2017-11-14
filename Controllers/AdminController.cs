@@ -14,15 +14,22 @@ namespace FirstREST.Controllers
             return View();
         }
 
-        public ActionResult ArtigosStock()
+        /*public ActionResult ArtigosStock()
         {
             ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(); 
             return View();
+        }*/
+
+        public ActionResult ArtigosStock()
+        {
+            ViewBag.listaArmazens = Lib_Primavera.PriIntegration.ListaArmazens();
+            return View();
         }
 
-        public ActionResult ArmazensArtigo()
+        public ActionResult ArmazensArtigo(string id)
         {
-            ViewBag.listaArtigos = Lib_Primavera.PriIntegration.ListaArtigos();
+            ViewBag.armazem = Lib_Primavera.PriIntegration.GetArmazem(id);
+            ViewBag.listaArtigos = Lib_Primavera.PriIntegration.ListaProdutosArmazem(id);
             return View();
         }
 
