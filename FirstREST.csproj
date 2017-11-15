@@ -202,6 +202,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\catalogo.css" />
+    <Content Include="Content\cliente.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -318,6 +320,12 @@
     <Content Include="Views\Admin\ArmazensArtigo.cshtml" />
     <Content Include="Views\Categoria\Categorias.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Cliente.cshtml" />
+    <Content Include="Views\Clientes\Clientes.cshtml" />
+    <Content Include="Views\cenas.cshtml" />
+    <Content Include="Views\DocVenda\Index.cshtml" />
+    <Content Include="Views\DocVenda\GetEncomendasCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
