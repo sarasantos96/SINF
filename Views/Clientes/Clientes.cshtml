@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Clientes";
+}
+
+<div class="container">
+
+        <div class="lista">
+            @{
+                foreach (var cliente in ViewBag.listaClientes)
+                {
+                    <p>@cliente.CodCliente</p>
+                }
+            }
+        </div>
+ </div>
+

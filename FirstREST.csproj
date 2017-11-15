@@ -202,6 +202,8 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\catalogo.css" />
+    <Content Include="Content\cliente.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -318,12 +320,22 @@
     <Content Include="Views\Admin\ArmazensArtigo.cshtml" />
     <Content Include="Views\Categoria\Categorias.cshtml" />
     <Content Include="Views\Categoria\Index.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Cliente.cshtml" />
+    <Content Include="Views\Clientes\Clientes.cshtml" />
+    <Content Include="Views\cenas.cshtml" />
+    <Content Include="Views\DocVenda\ClienteEncomendas.cshtml" />
+    <Content Include="Views\DocVenda\DocVenda.cshtml" />
+    <Content Include="Views\DocVenda\DocVendas.cshtml" />
+    <Content Include="Views\Client\Cliente.cshtml" />
+    <Content Include="Views\Client\Clientes.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\NovoCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Client\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
