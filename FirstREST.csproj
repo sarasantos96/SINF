@@ -324,14 +324,18 @@
     <Content Include="Views\Clientes\Cliente.cshtml" />
     <Content Include="Views\Clientes\Clientes.cshtml" />
     <Content Include="Views\cenas.cshtml" />
-    <Content Include="Views\DocVenda\Index.cshtml" />
-    <Content Include="Views\DocVenda\GetEncomendasCliente.cshtml" />
+    <Content Include="Views\DocVenda\ClienteEncomendas.cshtml" />
+    <Content Include="Views\DocVenda\DocVenda.cshtml" />
+    <Content Include="Views\DocVenda\DocVendas.cshtml" />
+    <Content Include="Views\Client\Cliente.cshtml" />
+    <Content Include="Views\Client\Clientes.cshtml" />
+    <Content Include="Views\Client\Index.cshtml" />
+    <Content Include="Views\Client\NovoCliente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Client\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>

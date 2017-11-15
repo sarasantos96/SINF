@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Cliente";
+}
+
+<div class="container">
+        <div class="container-fliud" style="padding:5%" >
+            <div class="row">
+                <div class="previewProduct col-md-6">
+                    <img width="400" height="400" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                </div>
+                <div class="user-info col-md-4">
+                  @{
+                    <h2 class="user-name"> @ViewBag.cliente.NomeCliente</h2>
+                     <div class="user-code"><h5>Código: </h5>@ViewBag.cliente.CodCliente</div>
+                    <div class="user-email"><h5>Email: </h5>xxxxx@email.com</div>
+                    <div class="user-city"><h5>Adress: </h5>@ViewBag.cliente.Morada</div>
+                } 
+                </div>
+            </div>
+        </div>   
+</div>
+
+<div class="container">
+
+    @{
+    <div class="lista">
+        @{
+            foreach (var encomendas in ViewBag.listaEncomendasCliente)
+            {
+            <p>@encomendas.id</p>
+            }
+        }
+    </div>
+    }
+</div>
+
+
+
+
+
