@@ -137,7 +137,7 @@ hr {
   overflow: visible;
 }
 
-h1, h2, h3, h4, h6, h6 {
+h1, h2, h3, h4, p, p {
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
@@ -428,8 +428,8 @@ template {
   display: none !important;
 }
 
-h1, h2, h3, h4, h6, h6,
-.h1, .h2, .h3, .h4, .h6, .h6 {
+h1, h2, h3, h4, p, p,
+.h1, .h2, .h3, .h4, .p, .p {
   margin-bottom: 0.5rem;
   font-family: inherit;
   font-weight: 500;
@@ -453,11 +453,11 @@ h4, .h4 {
   font-size: 1.5rem;
 }
 
-h6, .h6 {
+p, .p {
   font-size: 1.25rem;
 }
 
-h6, .h6 {
+p, .p {
   font-size: 1rem;
 }
 
