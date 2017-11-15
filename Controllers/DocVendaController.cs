@@ -25,10 +25,16 @@ namespace FirstREST.Controllers
             return View();
         }
 
-        public DocVenda DocVenda(string numdoc)
+        public ActionResult DocVenda(string id)
         {
-            DocVenda docVenda = Lib_Primavera.PriIntegration.Encomenda_Get(numdoc);
-            return docVenda; //  -- missing case : docvenda == null !!
+            ViewBag.docVenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
+            return View();
+        }
+
+        public ActionResult ClienteEncomendas(string id)
+        {
+            ViewBag.encomendasCliente = Lib_Primavera.PriIntegration.getEncomendasCliente(id);
+            return View();
         }
 
        [System.Web.Http.HttpPost]    
@@ -51,7 +57,7 @@ namespace FirstREST.Controllers
 
         }
 
-
+    
        /* public HttpResponseMessage Put(int id, Lib_Primavera.Model.Cliente cliente)
         {
 
@@ -106,25 +112,5 @@ namespace FirstREST.Controllers
 
         }
         */
-
-       /* public IEnumerable<Lib_Primavera.Model.DocVenda> Get()
-       {
-           return Lib_Primavera.PriIntegration.Encomendas_List();
-       }*/
-
-       /* public Lib_Primavera.Model.DocVenda Get(string id)
-        {
-            Lib_Primavera.Model.DocVenda docvenda = Lib_Primavera.PriIntegration.Encomenda_Get(id);
-            if (docvenda == null)
-            {
-                throw new HttpResponseException(
-                        Request.CreateResponse(HttpStatusCode.NotFound));
-
-            }
-            else
-            {
-                return docvenda;
-            }
-        }*/
     }
 }

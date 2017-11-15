@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "DocVenda";
+}
+
+<h2>DocVenda</h2>
+@{
+                foreach (var doc in ViewBag.docVenda)
+                {
+                    <h1>@doc.id</h1>
+                    <p>@Html.Raw(Json.Encode(doc))</p>
+                }
+}
