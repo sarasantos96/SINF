@@ -37,8 +37,13 @@ namespace FirstREST.Controllers
             return View();
         }
 
-       [System.Web.Http.HttpPost]    
-       public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
+        public string EstadoEncomenda(string id)
+        {
+            return Lib_Primavera.PriIntegration.getEstadoEncomenda(id);
+        }
+
+        [System.Web.Http.HttpPost]
+        public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
@@ -56,61 +61,5 @@ namespace FirstREST.Controllers
             }
 
         }
-
-    
-       /* public HttpResponseMessage Put(int id, Lib_Primavera.Model.Cliente cliente)
-        {
-
-            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
-
-            try
-            {
-                erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
-                if (erro.Erro == 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, erro.Descricao);
-                }
-            }
-
-            catch (Exception exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
-            }
-        }*/
-
-       /* public HttpResponseMessage Delete(string id)
-        {
-
-
-            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
-
-            try
-            {
-
-                erro = Lib_Primavera.PriIntegration.DelCliente(id);
-
-                if (erro.Erro == 0)
-                {
-                    return Request.CreateResponse(HttpStatusCode.OK, erro.Descricao);
-                }
-                else
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, erro.Descricao);
-                }
-
-            }
-
-            catch (Exception exc)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, erro.Descricao);
-
-            }
-
-        }
-        */
     }
 }

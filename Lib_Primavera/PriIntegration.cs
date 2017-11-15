@@ -719,6 +719,7 @@ namespace FirstREST.Lib_Primavera
         //ENCOMENDAS CLIENTES
         #region DocsVenda
 
+        //POST create a new Order
         public static Model.RespostaErro Encomendas_New(Model.DocVenda dv)
         {
             Lib_Primavera.Model.RespostaErro erro = new Model.RespostaErro();
@@ -779,8 +780,7 @@ namespace FirstREST.Lib_Primavera
             }
         }
 
-     
-
+        //GET all orders
         public static List<Model.DocVenda> Encomendas_List()
         {
             
@@ -832,9 +832,7 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         }
 
-
-
-
+        //GET order by numDoc
         public static List<Model.DocVenda> Encomenda_Get(string numDoc)
         {
             StdBELista objListCab;
@@ -885,7 +883,7 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         }
 
-
+        //GET all client orders
         public static List<Model.DocVenda> getEncomendasCliente(string CodCliente)
         {
             StdBELista objListCab;
@@ -936,6 +934,23 @@ namespace FirstREST.Lib_Primavera
             return listdv;
         } 
 
+        //GET order status 
+        public static string getEstadoEncomenda(string idCabDoc)
+        {
+            StdBELista objList;
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+                objList = PriEngine.Engine.Consulta("SELECT Estado FROM CabecDocStatus WHERE IdCabecDoc='"+idCabDoc+"'");
+
+                return objList.Valor("Estado");
+            }
+            else
+            {
+                return null;
+
+            }
+        }
         #endregion DocsVenda
     }
 }
