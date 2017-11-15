@@ -28,7 +28,8 @@ namespace FirstREST.Controllers
             ViewBag.categoria = Lib_Primavera.PriIntegration.GetCategoria(id);
             return View();
         }
-        /*
+
+         /*
         //
         // GET: /Categoria/
         public IEnumerable<Lib_Primavera.Model.Categoria> Get()

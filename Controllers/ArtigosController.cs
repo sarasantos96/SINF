@@ -30,6 +30,12 @@ namespace FirstREST.Controllers
             ViewBag.artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
             return View();
         }
+
+        public ActionResult ArtigosPorCategoria(string categoria)
+        {
+            ViewBag.artigosCategoria = Lib_Primavera.PriIntegration.ListaArtigosCategoria(categoria);
+            return View();
+        }
         //
         // GET: /Artigos/
 

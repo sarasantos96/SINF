@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "ArtigosPorCategoria";
+}
+
+
+<div class="row">
+    @{
+        foreach (var artigo in @ViewBag.artigosCategoria)
+        {
+            <div class="col">
+                <div class="item">
+                    <img height="250" width="200"src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
+                    <div class="info">
+                        <p>@artigo.DescArtigo</p>
+                        <p>@artigo.CodArtigo</p>
+                        <p>@artigo.Preco€</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+</div>
