@@ -486,12 +486,27 @@ namespace FirstREST.Lib_Primavera
 
                 objList = PriEngine.Engine.Consulta("SELECT Artigo, StkActual FROM ArtigoArmazem  WHERE Armazem ='" + codArmazem + "' ORDER BY Artigo");
 
+                art = new Model.Artigo();
+                art.CodArtigo = objList.Valor("Artigo");
+                art.STKAtual = objList.Valor("StkActual");
+                listArts.Add(art);
+                objList.Seguinte();
+
                 while (!objList.NoFim())
                 {
                     art = new Model.Artigo();
                     art.CodArtigo = objList.Valor("Artigo");
                     art.STKAtual = objList.Valor("StkActual");
-                    listArts.Add(art);
+                    if (listArts[listArts.Count - 1].CodArtigo == art.CodArtigo)
+                    {
+                        listArts[listArts.Count - 1].STKAtual += art.STKAtual;
+                    }
+                    else
+                    {
+                        listArts.Add(art);
+                    }
+
+
                     objList.Seguinte();
                 }
 
