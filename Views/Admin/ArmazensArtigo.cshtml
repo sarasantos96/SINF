@@ -7,16 +7,22 @@
     <h4>@ViewBag.armazem.CodArmazem</h4>
     <h5>Product List</h5>
     <ul class="list-group">
-        @{
-            foreach (var artigo in @ViewBag.listaArtigos)
-            {
-                <li class="list-group-item">
-                    <div>
-                        <p>@artigo.CodArtigo</p>
-                        <p>@artigo.STKAtual</p>
-                    </div>
-                </li>
-            }
+    @{
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-sm-6"><b>Produto</b></div>
+                <div class="col-sm-6"><b>Stock Actual</b></div>
+            </div>
+        </li>
+                foreach (var artigo in @ViewBag.listaArtigos)
+                {
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-sm-6">@artigo.CodArtigo</div>
+                <div class="col-sm-6">@artigo.STKAtual</div>
+            </div>
+        </li>
+        }
         }
     </ul>
 </div>
