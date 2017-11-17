@@ -31,9 +31,9 @@ namespace FirstREST.Controllers
             return View();
         }
 
-        public ActionResult ArtigosPorCategoria(string categoria)
+        public ActionResult ArtigosPorCategoria(string id)
         {
-            ViewBag.artigosCategoria = Lib_Primavera.PriIntegration.ListaArtigosCategoria(categoria);
+            ViewBag.artigosCategoria = Lib_Primavera.PriIntegration.ListaArtigosCategoria(id);
             return View();
         }
         //

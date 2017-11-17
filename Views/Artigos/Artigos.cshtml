@@ -4,81 +4,19 @@
 
 <div class="container">
     <div class="row">
+@{
+    foreach (var artigo in ViewBag.listaArtigos)
+    {
         <div class="col">
             <div class="item">
                 <img height="250" width="200"src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[0].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[0].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[0].Preco€</p>
-                    }
-
+                <div class="info">                  
+                    <p>@artigo.DescArtigo</p>
+                    <p class="description">@artigo.CodArtigo</p>
+                    <p>@artigo.Preco€</p>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="item">
-                <img height="250" width="200" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[1].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[1].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[1].Preco€</p>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="item">
-                <img height="250" width="200" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[2].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[2].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[2].Preco€</p>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="item">
-                <img height="250" width="200" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[3].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[3].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[3].Preco€</p>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="item">
-                <img height="250" width="200" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[4].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[4].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[4].Preco€</p>
-                    }
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="item">
-                <img height="250" width="200" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                <div class="info">
-                    @{
-                        <p>@ViewBag.listaArtigos[5].DescArtigo</p>
-                        <p class="description">@ViewBag.listaArtigos[5].CodArtigo</p>
-                        <p>@ViewBag.listaArtigos[5].Preco€</p>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+    }
+}
+        
