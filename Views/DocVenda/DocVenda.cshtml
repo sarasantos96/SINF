@@ -2,11 +2,13 @@
     ViewBag.Title = "DocVenda";
 }
 
-<h2>DocVenda</h2>
 @{
-                foreach (var doc in ViewBag.docVenda)
-                {
-                    <h1>@doc.id</h1>
-                    <p>@Html.Raw(Json.Encode(doc))</p>
-                }
+    //<h2>Order @ViewBag.docVenda.id</h2>
+
+    /*foreach (var prod in @ViewBag.docVenda.LinhasDoc)
+    {
+            <h4>@prod.codArtigo @prod.DescArtigo</h4>
+            <p>Quantity: @prod.Quantidade</p>
+            <p>Price: @prod.PrecoUnitario</p>
+    }*/
 }

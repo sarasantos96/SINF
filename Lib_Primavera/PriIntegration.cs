@@ -860,7 +860,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListCab = PriEngine.Engine.Consulta("SELECT a.id, a.Entidade, a.Data, a.NumDoc, a.TotalMerc, a.Serie From CabecDoc AS a where a.TipoDoc='ECL' and a.NumDoc='"+numDoc+"'");
+                objListCab = PriEngine.Engine.Consulta("SELECT a.id, a.Entidade, a.Data, a.NumDoc, a.TotalMerc, a.Serie From CabecDoc AS a where a.TipoDoc='ECL' and a.id='"+numDoc+"'");
                 while (!objListCab.NoFim())
                 {
                     dv = new Model.DocVenda();
@@ -911,7 +911,7 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objListCab = PriEngine.Engine.Consulta("SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='ECL' and Entidade='"+CodCliente+"'");
+                objListCab = PriEngine.Engine.Consulta("SELECT id, Entidade, Data, NumDoc, TotalMerc, Serie From CabecDoc where TipoDoc='ECL' and Entidade='" + CodCliente + "' ORDER BY Data DESC");
                 while (!objListCab.NoFim())
                 {
                     dv = new Model.DocVenda();
@@ -942,6 +942,8 @@ namespace FirstREST.Lib_Primavera
                     }
 
                     dv.LinhasDoc = listlindv;
+                    objListLin = PriEngine.Engine.Consulta("SELECT Estado FROM CabecDocStatus WHERE IdCabecDoc='" + dv.id + "'");
+                    dv.Estado = objListLin.Valor("Estado");
                     listdv.Add(dv);
                     objListCab.Seguinte();
                 }

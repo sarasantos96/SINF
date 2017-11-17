@@ -20,16 +20,23 @@
         </div>   
 </div>
 
-<div class="container" style="padding-top:10%">
+<div class="container">
 
-    <h2>ClienteEncomendas</h2>
-    @{
-        foreach (var doc in ViewBag.encomendasCliente)
-        {
-            <h1>@doc.id</h1>
-            <p>@Html.Raw(Json.Encode(doc))</p>
+    <h2>My Orders</h2>
+    <ul class="list-group">
+        @{
+            foreach (var encomenda in @ViewBag.encomendasCliente)
+            {
+                <li class="list-group-item">
+                    <div>
+                        <a href="#">Encomenda @encomenda.id</a>
+                        <p>NumDoc: @encomenda.NumDoc, Data: @encomenda.Data</p>
+                        <p>Status: @encomenda.Estado</p>
+                    </div>
+                </li>
+            }
         }
-    }
+    </ul>
 </div>
 
 
