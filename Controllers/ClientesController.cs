@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using FirstREST.Lib_Primavera.Model;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace FirstREST.Controllers
 {
@@ -33,6 +35,10 @@ namespace FirstREST.Controllers
 
         public ActionResult NovoCliente()
         {
+            var db = new FirstREST.Models.StoreEntities();
+            var blog = new FirstREST.Models.Utilizador { Email = "joaosilva@gmail.com", Pass= "1234", Username = "joaosilva123"};
+            db.Utilizadors.Add(blog);
+            db.SaveChanges();
             return View();
         }
 

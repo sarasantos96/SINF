@@ -4,6 +4,7 @@
 
 
 <div class="container">
+
     <h2>Create New Cliente</h2>
     <form id="newClienteform" action="http://localhost:49822/Clientes/Post" method="post">
         <div class="form-group">
@@ -22,6 +23,7 @@
             <label for="Morada">Address</label><br/>
             @Html.TextBox("Morada")<br/>
         <button type="button" id="Save" class="btn btn-info">Submit</button><br/>
+        </div>
     </form>
     @section Scripts{
         <script type="text/javascript">

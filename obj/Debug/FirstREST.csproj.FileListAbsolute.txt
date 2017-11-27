@@ -66,8 +66,12 @@ C:\SINF\SINF\bin\FirstREST.dll.config
 C:\SINF\SINF\bin\FirstREST.dll
 C:\SINF\SINF\bin\FirstREST.pdb
 C:\SINF\SINF\bin\Antlr3.Runtime.dll
+C:\SINF\SINF\bin\EntityFramework.dll
+C:\SINF\SINF\bin\EntityFramework.SqlServer.dll
+C:\SINF\SINF\bin\EntityFramework.SqlServerCompact.dll
 C:\SINF\SINF\bin\Microsoft.Web.Infrastructure.dll
 C:\SINF\SINF\bin\Newtonsoft.Json.dll
+C:\SINF\SINF\bin\System.Data.SqlServerCe.dll
 C:\SINF\SINF\bin\System.Net.Http.Formatting.dll
 C:\SINF\SINF\bin\System.Web.Helpers.dll
 C:\SINF\SINF\bin\System.Web.Http.dll
@@ -80,6 +84,9 @@ C:\SINF\SINF\bin\System.Web.WebPages.dll
 C:\SINF\SINF\bin\System.Web.WebPages.Razor.dll
 C:\SINF\SINF\bin\WebGrease.dll
 C:\SINF\SINF\bin\Antlr3.Runtime.pdb
+C:\SINF\SINF\bin\EntityFramework.xml
+C:\SINF\SINF\bin\EntityFramework.SqlServer.xml
+C:\SINF\SINF\bin\EntityFramework.SqlServerCompact.xml
 C:\SINF\SINF\bin\Newtonsoft.Json.xml
 C:\SINF\SINF\bin\System.Net.Http.Formatting.xml
 C:\SINF\SINF\bin\System.Web.Http.xml
