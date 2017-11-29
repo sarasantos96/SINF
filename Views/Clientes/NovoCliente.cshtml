@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "NovoCliente";
+    ViewBag.Title = "Sign Up";
 }
 
 
@@ -8,11 +8,23 @@
     <h2>Create New Cliente</h2>
     <form id="newClienteform" action="http://localhost:49822/Clientes/Post" method="post">
         <div class="form-group">
+            <label for="username">Username</label><br />
+            @Html.TextBox("username")<br />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label><br />
+            @Html.TextBox("email")<br />
+        </div>
+        <div class="form-group">
+            <label for="pass">Password</label><br />
+            @Html.TextBox("pass")<br />
+        </div>
+        <div class="form-group">
             <label for="codCliente">CodCliente</label><br />
             @Html.TextBox("codCliente")<br />
         </div>
         <div class="form-group">
-            <label for="NomeCliente">Name</label><br/>
+            <label for="NomeCliente">Name</label><br />
             @Html.TextBox("NomeCliente")<br />
         </div>
         <div class="form-group">
@@ -20,23 +32,23 @@
             @Html.TextBox("NumContribuinte")<br />
         </div>
         <div class="form-group">
-            <label for="Morada">Address</label><br/>
-            @Html.TextBox("Morada")<br/>
-        <button type="button" id="Save" class="btn btn-info">Submit</button><br/>
+            <label for="Morada">Address</label><br />
+            @Html.TextBox("Morada")<br />
+            <button type="button" id="Save" class="btn btn-info">Submit</button><br />
         </div>
     </form>
     @section Scripts{
         <script type="text/javascript">
 
-        $('#Save').click(function () {
-            var form = $("#newClienteform");
-            var url = form.attr("action");
-            var formData = form.serialize();
-            $.post(url, formData, function (data) {
-                $("#msg").html(data);
-            });
-        })
-        </script>           
+            $('#Save').click(function () {
+                var form = $("#newClienteform");
+                var url = form.attr("action");
+                var formData = form.serialize();
+                $.post(url, formData, function (data) {
+                    $("#msg").html(data);
+                });
+            })
+        </script>
     }
-        
-</div>
+  
+ </div>

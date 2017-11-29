@@ -35,10 +35,16 @@ namespace FirstREST.Controllers
 
         public ActionResult NovoCliente()
         {
-            var db = new FirstREST.Models.StoreEntities();
-            var blog = new FirstREST.Models.Utilizador { Email = "joaosilva@gmail.com", Pass= "1234", Username = "joaosilva123"};
-            db.Utilizadors.Add(blog);
-            db.SaveChanges();
+            return View();
+        }
+
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        public ActionResult LogIn()
+        {
             return View();
         }
 
@@ -71,12 +77,31 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPost]
+        public JsonResult CreateUtilizador([FromBody] Lib_Primavera.Model.Utilizador cliente)
+        {
+            String username = cliente.Username;
+            String password = cliente.Pass;
+            String email = cliente.Email;
+
+            var db = new FirstREST.Models.StoreEntities();
+            var blog = new FirstREST.Models.Utilizador { Email = email, Pass = password, Username = username };
+            db.Utilizadors.Add(blog);
+            db.SaveChanges();
+
+            JsonResult response = new JsonResult();
+            response.Data = "{}";
+            return response;
+
+        }
+
+        [System.Web.Http.HttpPost]
         public HttpResponseMessage Post([FromBody] Lib_Primavera.Model.Cliente cliente)
         {
             String cod = cliente.CodCliente;
             String name = cliente.NomeCliente;
             String numContribuite = cliente.NumContribuinte;
             String morada = cliente.Morada;
+
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
 

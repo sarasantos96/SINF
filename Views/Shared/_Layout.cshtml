@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
     <title>@ViewBag.Title</title>
+    @RenderSection("css", false)
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/bootstrapcss")
     @Scripts.Render("~/bundles/modernizr")
@@ -24,27 +26,31 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/ShoopingCart">Shopping Cart</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            User
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/Clientes/Cliente/">My Profile</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="Admin">Admin</a>
-                    </li>
+                    </li>                                    
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                </form>   
+
+                <ul class="navbar-nav pull-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Clientes/LogIn">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Clientes/SignUp">Sign up</a>
+                    </li>
+                </ul>
+
             </div>
         </nav>
     </header>
-    <div class="container body-content">
+    <div id="page_body" class="container body-content" >
         @RenderBody()
     </div>
      <footer>

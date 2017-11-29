@@ -5,27 +5,21 @@ using System.Web;
 
 namespace FirstREST.Lib_Primavera.Model
 {
-    public class Cliente
+    public class Utilizador
     {
-        public string CodCliente
+        //Parameters for local database
+        public string Username
         {
             get;
             set;
         }
 
-        public string NomeCliente
+        public string Pass
         {
             get;
             set;
         }
-
-        public string NumContribuinte
-        {
-            get;
-            set;
-        }
-
-        public string Morada
+        public string Email
         {
             get;
             set;
