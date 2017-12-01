@@ -22,9 +22,17 @@
         <fieldset id="form_content">
             <!-- Text input-->
             <div class="form-group">
+                <label class="control-label" for="fullname">Full Name</label>
+                <div class="text-center">
+                    <input id="fullname" name="fullname" type="text" placeholder="Full Name" class="form-control" required="">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
                 <label class="control-label" for="username">Username</label>
                 <div class="text-center">
-                    <input id="username" name="username" type="text" placeholder="username" class="form-control" required="">
+                    <input id="username" name="username" type="text" placeholder="Username" class="form-control" required="">
                 </div>
             </div>
 
@@ -32,7 +40,7 @@
             <div class="form-group">
                 <label class="control-label" for="email">Email</label>
                 <div class="text-center">
-                    <input id="email" name="email" type="email" placeholder="email" class="form-control " data-fv-emailaddress-message="The value is not a valid email address" required="">
+                    <input id="email" name="email" type="email" placeholder="Email" class="form-control " data-fv-emailaddress-message="The value is not a valid email address" required="">
 
                 </div>
             </div>
@@ -41,7 +49,7 @@
             <div class="form-group">
                 <label class="control-label" for="pass">Password</label>
                 <div class="text-center">
-                    <input id="pass" name="pass" type="password" placeholder="password" class="form-control" minlength="8" required="">
+                    <input id="pass" name="pass" type="password" placeholder="Password" class="form-control" minlength="8" required="">
                 </div>
                 <span class="help-block">minimum size 8</span>
             </div>

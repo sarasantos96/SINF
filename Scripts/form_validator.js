@@ -2,9 +2,10 @@
     var utilizadorModel = {
         Username: $("#username").val(),
         Pass: $("#pass").val(),
-        Email: $("#email").val()
+        Email: $("#email").val(),
+        Fullname: $("#fullname").val()
     };
-    console.log(utilizadorModel);
+
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/CreateUtilizador',
@@ -12,8 +13,16 @@
         data: JSON.stringify(utilizadorModel),
 
         dataType: "json",
-        success: function () { location.href = "http://localhost:49822/Clientes/LogIn" },
-        error: function () { alert('An error occurred, please try again.'); }
+        success: function (data) {
+             if(data != null && data.success) {
+                location.href = "http://localhost:49822/Clientes/LogIn"
+            }  else {
+                alert('Username already taken, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
     });
     return false;
 }
@@ -31,7 +40,9 @@ function validateLogInOnSubmit(theForm) {
         data: JSON.stringify(utilizadorModel),
         dataType: 'json',
         success: function (data) {
-            if (data != null && data.success) {
+            if (data != null && data.success && data.msg == "admin") {
+                location.href = "http://localhost:49822/Admin"
+            } else if (data != null && data.success) {
                 location.href = "http://localhost:49822"
             } else {
                 alert('Incorrect Credentials, try again!');

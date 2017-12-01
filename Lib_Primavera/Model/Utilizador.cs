@@ -24,5 +24,15 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+        public string Fullname
+        {
+            get;
+            set;
+        }
+        public string CodCliente
+        {
+            get;
+            set;
+        }
     }
 }
