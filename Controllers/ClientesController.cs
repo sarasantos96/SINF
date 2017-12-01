@@ -9,6 +9,9 @@ using System.Web.Http;
 using FirstREST.Lib_Primavera.Model;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace FirstREST.Controllers
 {
@@ -92,6 +95,47 @@ namespace FirstREST.Controllers
             response.Data = "{}";
             return response;
 
+        }
+
+        public RedirectResult LogOut()
+        {
+            if (Request.Cookies["UserId"] != null)
+            {              
+                var c = new HttpCookie("UserId");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+
+            return Redirect("~/");
+        }
+
+        [System.Web.Http.HttpPost]
+        public JsonResult CheckLogIn([FromBody] Lib_Primavera.Model.Utilizador cliente)
+        {
+            try
+            {
+                String username = cliente.Username;
+                String password = cliente.Pass;
+
+                //The ".FirstOrDefault()" method will return either the first matched
+                //result or null
+                var db = new FirstREST.Models.StoreEntities();
+                var myUser = db.Utilizadors
+                    .FirstOrDefault(u => u.Username == username 
+                                 && u.Pass == password);
+                if (myUser == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                string idvalue = myUser.Id.ToString();
+                Response.Cookies["UserId"].Value = idvalue;
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         [System.Web.Http.HttpPost]

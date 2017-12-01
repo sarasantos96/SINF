@@ -1,0 +1,17 @@
+﻿#form{
+    padding-left:20%;
+    padding-right:20%;
+}
+
+#submit_button{
+    margin-top: 10%;
+}
+
+.form-group{
+    padding-top:5px;
+    padding-bottom:10px;
+}
+
+#log-title{
+    padding-bottom:10px;
+}

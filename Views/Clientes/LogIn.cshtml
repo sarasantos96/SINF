@@ -2,4 +2,44 @@
     ViewBag.Title = "Log In";
 }
 
-<h2>LogIn</h2>
+@section css{
+    <link href="@Url.Content("~/Content/signup.css")" rel="stylesheet" type="text/css" />
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/form_validator.js"></script>  
+
+<div class="container" id="form">
+    <div id="log-title" class="text-center">
+        <h2>Log In</h2>
+    </div>
+
+    <form id="log_in_form" class="form-horizontal" name="sign_up_form" action="#" onsubmit="return validateLogInOnSubmit(this);"
+          data-fv-framework="bootstrap"
+          data-fv-icon-valid="glyphicon glyphicon-ok"
+          data-fv-icon-invalid="glyphicon glyphicon-remove"
+          data-fv-icon-validating="glyphicon glyphicon-refresh">
+        <fieldset id="form_content">
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="username">Username</label>
+                <div class="text-center">
+                    <input id="username" name="username" type="text" placeholder="username" class="form-control" required="">
+                </div>
+            </div>
+
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="control-label" for="pass">Password</label>
+                <div class="text-center">
+                    <input id="pass" name="pass" type="password" placeholder="password" class="form-control" minlength="8" required="">
+                </div>
+            </div>
+
+            <div id="submit_button" class="text-center">
+                <button id="btnsubmit" type="submit" class="btn btn-primary">Log In</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
