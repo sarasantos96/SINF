@@ -28,10 +28,15 @@ namespace FirstREST.Controllers
             return View();
         }
 
-        public ActionResult Cliente(string id)
+        public ActionResult Cliente()
         {
-            ViewBag.cliente = Lib_Primavera.PriIntegration.GetCliente(id);
-            ViewBag.encomendasCliente= Lib_Primavera.PriIntegration.getEncomendasCliente(id);
+            int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+            var db = new FirstREST.Models.StoreEntities();
+            FirstREST.Models.Utilizador myUser = db.Utilizadors
+                .FirstOrDefault(u => u.Id == userID);
+
+            ViewBag.cliente = myUser;
+            ViewBag.encomendasCliente= Lib_Primavera.PriIntegration.getEncomendasCliente(myUser.Username);
 
             return View();
         }
