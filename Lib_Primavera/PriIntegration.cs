@@ -196,6 +196,8 @@ namespace FirstREST.Lib_Primavera
                     myCli.set_NumContribuinte(cli.NumContribuinte);
                     myCli.set_Morada(cli.Morada);
                     myCli.set_Moeda("EUR");
+                    myCli.set_ModoPag("DEP");
+                    myCli.set_CondPag("2");
 
                     PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
 
