@@ -2,6 +2,9 @@
     ViewBag.Title = "Artigo";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/form_validator.js"></script>  
+
 <div class="container">
         <div class="card" style="padding-top:15px;margin-top:20px">
             <div class="container-fliud" style="padding:15px">
@@ -21,10 +24,16 @@
                             <p class="price">Price: <span>@ViewBag.artigo.Preco</span></p>
                         }
                         
-                        <div class="action">
-                            <button class="add-to-cart btn btn-info" type="button">Add to Cart</button>
-                            <button class="like btn btn-info" type="button"><span class="fa fa-heart"></span></button>
-                        </div>
+                        <form id="add_product_form" class="form-horizontal" name="add_product_form" action="#" onsubmit="return addProductToCart(this);">
+                            @{
+                                <input type="hidden" id="codArtigo" name="codArtigo" value=@ViewBag.artigo.CodArtigo>
+                                <input type="hidden" id="precoArtigo" name="precoArtigo" value=@ViewBag.artigo.Preco>
+                                <input type="hidden" id="descArtigo" name="descArtigo" value=@ViewBag.artigo.DescArtigo>
+                            }                           
+                            <div class="action">
+                                <button type="submit" class="add-to-cart btn btn-info" >Add to Cart</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

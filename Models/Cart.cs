@@ -12,20 +12,14 @@ namespace FirstREST.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Utilizador
+    public partial class Cart
     {
-        public Utilizador()
-        {
-            this.Carts = new HashSet<Cart>();
-        }
-    
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Pass { get; set; }
-        public string Email { get; set; }
-        public string Fullname { get; set; }
-        public string CodCliente { get; set; }
+        public int ClientId { get; set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public double ProductPrice { get; set; }
     
-        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual Utilizador Utilizador { get; set; }
     }
 }

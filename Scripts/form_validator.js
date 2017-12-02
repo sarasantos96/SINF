@@ -54,3 +54,30 @@ function validateLogInOnSubmit(theForm) {
     });
     return false;
 }
+
+function addProductToCart(theForm) {
+    var artigoModel = {
+        CodArtigo: $("#codArtigo").val(),
+        DescArtigo:$('#descArtigo').val(), 
+        Preco: $("#precoArtigo").val(),
+    };
+    console.log(artigoModel);
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/Artigos/AdicionaArtigoCarrinho',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(artigoModel),
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                alert("Product added to Cart!");
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}
