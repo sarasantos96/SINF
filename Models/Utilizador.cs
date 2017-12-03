@@ -25,6 +25,8 @@ namespace FirstREST.Models
         public string Email { get; set; }
         public string Fullname { get; set; }
         public string CodCliente { get; set; }
+        public long TaxPayerNumber { get; set; }
+        public string Address { get; set; }
     
         public virtual ICollection<Cart> Carts { get; set; }
     }

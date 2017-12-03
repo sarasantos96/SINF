@@ -94,9 +94,11 @@ namespace FirstREST.Controllers
                 String email = cliente.Email;
                 String fullname = cliente.Fullname;
                 String codCliente = username;
+                String address = cliente.Address;
+                int taxPayerNumber = cliente.TaxPayerNumber;
 
                 var db = new FirstREST.Models.StoreEntities();
-                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = password, Username = username, Fullname = fullname, CodCliente = codCliente };
+                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = password, Username = username, Fullname = fullname, CodCliente = codCliente, TaxPayerNumber = taxPayerNumber, Address = address  };
                 db.Utilizadors.Add(blog);
                 db.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);

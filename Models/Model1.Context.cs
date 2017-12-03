@@ -25,7 +25,7 @@ namespace FirstREST.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Utilizador> Utilizadors { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Utilizador> Utilizadors { get; set; }
     }
 }

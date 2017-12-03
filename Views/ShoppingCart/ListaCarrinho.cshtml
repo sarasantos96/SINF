@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "ListaCarrinho";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/form_validator.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var artigo in @ViewBag.carrinho)
+                {
+                    <tr>
+                        <td> <a href="~/Artigos/Artigo/@artigo.ProductId">@artigo.ProductName (@artigo.ProductId)</a> </td>
+                        <td>  @artigo.ProductPrice €</td>
+                        <td class="text-center"> 1 </td>
+                        <td> <button type="button" class="btn btn-link" onclick="removeProduct('@artigo.ProductId');"> Remove </button> </td>                             
+                    </tr>
+                }
+                <tr>
+                    <td>
+                        <h4>Total: @ViewBag.total €</h4>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Checkout Cart</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Create Order</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Shipping Details <span href="#" data-toggle="tooltip" title="To change any field access your profile"><i class="fa fa-info-circle" aria-hidden="true"></i></span></h4>
+                    @{
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> <p><b>Name:</b></p></td>
+                                    <td> <p>@ViewBag.cliente.Fullname</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Address:</b></p></td>
+                                    <td><p>@ViewBag.cliente.Address</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Tax Payer Number:</b></p></td>
+                                    <td><p>@ViewBag.cliente.TaxPayerNumber</p></td>
+                                </tr>
+                                <tr>
+                                    <td><p><b>Total:</b></p></td>
+                                    <td><p>@ViewBag.total €</p></td>
+                                </tr>
+                            </tbody>
+                        </table>            
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Finalize Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

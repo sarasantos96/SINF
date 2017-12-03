@@ -9,6 +9,7 @@
     <script type="text/javascript" src="~/Scripts/pagination.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+
     <title>@ViewBag.Title</title>
     @RenderSection("css", false)
     @Styles.Render("~/Content/css")
@@ -25,24 +26,24 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                    </form>                                                 
+                </ul>
+
+                <ul class="navbar-nav pull-right">
                     @{ if (Request.Cookies["UserId"] != null && Request.Cookies["UserId"].Value != "admin")
                      {
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Shopping Cart</a>
+                            <a class="nav-link" href="~/Clientes/Cliente"><span class="fa fa-user"></span> Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="~/Clientes/Cliente">My Profile</a>
+                            <a class="nav-link" href="~/ShoppingCart"><span class="fa fa-shopping-cart"></span> Cart</a>
                         </li>
+
                      }
                     }
-                                                   
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-                </form>   
-
-                <ul class="navbar-nav pull-right">
                     @{
                         if (Request.Cookies["UserId"] != null)
                         {
@@ -76,6 +77,9 @@
             </span>
         </nav>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     @Scripts.Render("~/bundles/bootstrapjs")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

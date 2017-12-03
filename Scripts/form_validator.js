@@ -3,9 +3,11 @@
         Username: $("#username").val(),
         Pass: $("#pass").val(),
         Email: $("#email").val(),
-        Fullname: $("#fullname").val()
+        Fullname: $("#fullname").val(),
+        TaxPayerNumber: $("#taxPayerNumber").val(),
+        Address: $("#address").val()
     };
-
+    console.log(utilizadorModel);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/CreateUtilizador',
@@ -71,6 +73,31 @@ function addProductToCart(theForm) {
         success: function (data) {
             if (data != null && data.success) {
                 alert("Product added to Cart!");
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}
+
+function removeProduct(id) {
+    console.log(id);
+    var j = {
+        id: id
+    };
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/ShoppingCart/RemoveArtigo',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(j),
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                location.href = "http://localhost:49822/ShoppingCart"
             } else {
                 alert('An error occurred, please try again!');
             }
