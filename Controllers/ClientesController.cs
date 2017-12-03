@@ -12,6 +12,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace FirstREST.Controllers
 {
@@ -97,8 +99,10 @@ namespace FirstREST.Controllers
                 String address = cliente.Address;
                 int taxPayerNumber = cliente.TaxPayerNumber;
 
+                string hash = GetHashString(password);
+
                 var db = new FirstREST.Models.StoreEntities();
-                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = password, Username = username, Fullname = fullname, CodCliente = codCliente, TaxPayerNumber = taxPayerNumber, Address = address  };
+                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = hash, Username = username, Fullname = fullname, CodCliente = codCliente, TaxPayerNumber = taxPayerNumber, Address = address  };
                 db.Utilizadors.Add(blog);
                 db.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -129,6 +133,7 @@ namespace FirstREST.Controllers
             {
                 String username = cliente.Username;
                 String password = cliente.Pass;
+                string hash = GetHashString(password);
 
                 if (username.Equals("admin") && password.Equals("admin1234"))
                 {
@@ -143,7 +148,7 @@ namespace FirstREST.Controllers
                     var db = new FirstREST.Models.StoreEntities();
                     var myUser = db.Utilizadors
                         .FirstOrDefault(u => u.Username == username
-                                     && u.Pass == password);
+                                     && u.Pass == hash);
                     if (myUser == null)
                     {
                         throw new InvalidOperationException();
@@ -216,6 +221,20 @@ namespace FirstREST.Controllers
             }
 
         }
-        
+
+        public static byte[] GetHash(string inputString)
+        {
+            HashAlgorithm algorithm = MD5.Create();  //or use SHA256.Create();
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(inputString));
+        }
+
+        public static string GetHashString(string inputString)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in GetHash(inputString))
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
+        }
     }
 }
