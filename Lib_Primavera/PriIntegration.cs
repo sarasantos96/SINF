@@ -191,16 +191,21 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
 
-                    myCli.set_Cliente(cli.CodCliente);
-                    myCli.set_Nome(cli.NomeCliente);
-                    myCli.set_NumContribuinte(cli.NumContribuinte);
-                    myCli.set_Morada(cli.Morada);
-                    myCli.set_Moeda("EUR");
-                    myCli.set_ModoPag("DEP");
-                    myCli.set_CondPag("2");
+                    StdBELista objCli = PriEngine.Engine.Consulta("SELECT * FROM CLIENTES AS c WHERE c.Cliente ='" + cli.CodCliente + "'");
 
-                    PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
+                    if (objCli.Vazia())
+                    {
+                        myCli.set_Cliente(cli.CodCliente);
+                        myCli.set_Nome(cli.NomeCliente);
+                        myCli.set_NumContribuinte(cli.NumContribuinte);
+                        myCli.set_Morada(cli.Morada);
+                        myCli.set_Moeda("EUR");
+                        myCli.set_ModoPag("DEP");
+                        myCli.set_CondPag("2");
 
+                        PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
+                    }
+                    
                     erro.Erro = 0;
                     erro.Descricao = "Sucesso";
                     return erro;

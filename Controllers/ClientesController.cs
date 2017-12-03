@@ -161,7 +161,7 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public HttpResponseMessage Post([FromBody] Lib_Primavera.Model.Cliente cliente)
+        public JsonResult Post([FromBody] Lib_Primavera.Model.Cliente cliente)
         {
             String cod = cliente.CodCliente;
             String name = cliente.NomeCliente;
@@ -173,14 +173,12 @@ namespace FirstREST.Controllers
 
             if (erro.Erro == 0)
             {
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                return response;
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
 
             else
             {
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                return response;
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
 
         }

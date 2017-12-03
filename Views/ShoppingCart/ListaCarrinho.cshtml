@@ -82,7 +82,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Finalize Order</button>
+                    @{
+                        <button type="button" class="btn btn-primary" onclick="createPriClient('@ViewBag.cliente.Username', '@ViewBag.cliente.Address',' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber'); createPriOrder();">Finalize Order</button>
+                    }
                 </div>
             </div>
         </div>

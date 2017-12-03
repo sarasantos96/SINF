@@ -108,3 +108,52 @@ function removeProduct(id) {
     });
     return false;
 }
+
+function createPriClient(username,address,name,taxpayernumber) {
+    var j = {
+        CodCliente: username,
+        NomeCliente: name,
+        NumContribuinte: taxpayernumber,
+        Morada : address
+    };
+    console.log(j);
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/Clientes/Post',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(j),
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                location.href = "http://localhost:49822/ShoppingCart";
+                alert("Order created");
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}
+
+function createPriOrder() {
+    console.log("Oi");
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/DocVenda/Post',
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                return true;
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}

@@ -43,21 +43,48 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public HttpResponseMessage Post(Lib_Primavera.Model.DocVenda dv)
+        public JsonResult Post()
         {
+            
+            int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+            var db = new FirstREST.Models.StoreEntities();
+            var cart = from m in db.Carts
+                       where m.ClientId == userID
+                       select m;
+            var myUser = db.Utilizadors
+                        .FirstOrDefault(u => u.Id == userID);
+
+            DocVenda dv = new DocVenda();
+            dv.Entidade = myUser.Username;
+            List<LinhaDocVenda> linhas = new List<LinhaDocVenda>();
+
+            foreach (var artigo in cart)
+            {
+                LinhaDocVenda l = new LinhaDocVenda();
+                l.CodArtigo = artigo.ProductId;
+                l.Quantidade = 1;
+                l.Desconto = 0;
+                l.PrecoUnitario = artigo.ProductPrice;
+                linhas.Add(l);
+            }
+            dv.LinhasDoc = linhas;
+
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
 
             if (erro.Erro == 0)
             {
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                return response;
+                foreach (var art in cart)
+                {
+                    db.Carts.Remove(art);
+                }
+                db.SaveChanges();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
 
             else
             {
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                return response;
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
 
         }
