@@ -85,7 +85,6 @@ function addProductToCart(theForm) {
 }
 
 function removeProduct(id) {
-    console.log(id);
     var j = {
         id: id
     };
@@ -116,7 +115,6 @@ function createPriClient(username,address,name,taxpayernumber) {
         NumContribuinte: taxpayernumber,
         Morada : address
     };
-    console.log(j);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/Post',
@@ -139,7 +137,6 @@ function createPriClient(username,address,name,taxpayernumber) {
 }
 
 function createPriOrder() {
-    console.log("Oi");
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/DocVenda/Post',
@@ -147,6 +144,60 @@ function createPriOrder() {
         success: function (data) {
             if (data != null && data.success) {
                 return true;
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}
+
+function updateUser() {
+    var j = {
+        Email: $("#email").val(),
+        Fullname: $("#fullname").val(),
+        TaxPayerNumber: $("#taxPayerNumber").val(),
+        Address: $("#address").val()
+    };
+    console.log(j);
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/Clientes/Put',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(j),
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                location.href = "http://localhost:49822/Clientes/Cliente";
+            } else {
+                alert('An error occurred, please try again!');
+            }
+        },
+        error: function () {
+            alert('An error occurred, please try again!');
+        }
+    });
+    return false;
+}
+
+function updatePassword() {
+    var j = {
+        oldPass: $("#oldpass").val(),
+        newPass: $("#newpass").val(),
+    };
+    console.log(j);
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:49822/Clientes/UpdatePassword',
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(j),
+        dataType: 'json',
+        success: function (data) {
+            if (data != null && data.success) {
+                location.href = "http://localhost:49822/Clientes/Cliente";
             } else {
                 alert('An error occurred, please try again!');
             }

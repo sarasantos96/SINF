@@ -1,6 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Cliente";
+    ViewBag.Title = "My Profile";
 }
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/form_validator.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container">
         <div class="container-fliud" style="padding: 5%; background-color: lightgrey; border-radius:10px 10px 10px 10px" >
@@ -11,9 +16,21 @@
                 <div class="user-info col-md-4">
                     @{
                         <h2 class="user-name"> @ViewBag.cliente.Fullname</h2>
-                        <div class="user-code"><h5>username: </h5>@ViewBag.cliente.Username</div>
+                        <div class="user-code"><h5>Username: </h5>@ViewBag.cliente.Username</div>
                         <div class="user-email"><h5>Email: </h5>@ViewBag.cliente.Email</div>
+                        <div class="user-address"><h5>Address</h5> @ViewBag.cliente.Address</div>
+                        <div class="user-tax-number"><h5>Tax Payer Number</h5> @ViewBag.cliente.TaxPayerNumber</div>
                     }
+                    <div class="dropdown" style="margin-top:5%">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                            Update Profile
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="modal" data-target="#changesModal">Change my info</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#passwordModal">Change password</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>   
@@ -36,6 +53,114 @@
             }
         }
     </ul>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="changesModal" tabindex="-1" role="dialog" aria-labelledby="changesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Change your information</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="sign_up_form" class="form-horizontal" name="sign_up_form" action="#" 
+                      data-fv-framework="bootstrap"
+                      data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove"
+                      data-fv-icon-validating="glyphicon glyphicon-refresh">
+                    <fieldset id="form_content">
+                        @{
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="control-label" for="fullname">Full Name</label>
+                                <div class="text-center">
+                                    <input id="fullname" name="fullname" type="text" placeholder="Full Name" value="@ViewBag.cliente.Fullname" class="form-control" required="">
+                                </div>
+                            </div>
+
+                        <!-- Text input-->
+                            <div class="form-group">
+                                <label class="control-label" for="address">Address</label>
+                                <div class="text-center">
+                                    <input id="address" name="address" type="text" placeholder="Address" value="@ViewBag.cliente.Address" class="form-control " required="">
+
+                                </div>
+                            </div>
+
+                        <!-- Text input-->
+                            <div class="form-group">
+                                <label class="control-label" for="taxPayerNumber">Tax Payer Number</label>
+                                <div class="text-center">
+                                    <input id="taxPayerNumber" name="taxPayerNumber" type="number" placeholder="Tax Payer Number"  value="@ViewBag.cliente.TaxPayerNumber" class="form-control " required="">
+
+                                </div>
+                            </div>
+
+                        <!-- Text input-->
+                            <div class="form-group">
+                                <label class="control-label" for="email">Email</label>
+                                <div class="text-center">
+                                    <input id="email" name="email" type="email" placeholder="Email" value="@ViewBag.cliente.Email" class="form-control " data-fv-emailaddress-message="The value is not a valid email address" required="">
+                                </div>
+                            </div>
+                        }
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="updateUser();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Change password</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="change_pass_form" class="form-horizontal" name="change_pass_form" action="#"
+                      data-fv-framework="bootstrap"
+                      data-fv-icon-valid="glyphicon glyphicon-ok"
+                      data-fv-icon-invalid="glyphicon glyphicon-remove"
+                      data-fv-icon-validating="glyphicon glyphicon-refresh">
+                    <fieldset id="form_content">
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="control-label" for="oldpass">Old Password</label>
+                            <div class="text-center">
+                                <input id="oldpass" name="oldpass" type="password" placeholder="Old Password" class="form-control" minlength="8" required="">
+                            </div>
+                        </div>
+
+                        <!-- Password input-->
+                        <div class="form-group">
+                            <label class="control-label" for="newpass">New Password</label>
+                            <div class="text-center">
+                                <input id="newpass" name="newpass" type="password" placeholder="New Password" class="form-control" minlength="8" required="">
+                            </div>
+                            <span class="help-block">minimum size 8</span>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="updatePassword();">Save</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 

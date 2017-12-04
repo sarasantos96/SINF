@@ -90,13 +90,7 @@ namespace FirstREST.Lib_Primavera
                 if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
                 {
 
-                    if (PriEngine.Engine.Comercial.Clientes.Existe(cliente.CodCliente) == false)
-                    {
-                        erro.Erro = 1;
-                        erro.Descricao = "O cliente não existe";
-                        return erro;
-                    }
-                    else
+                    if (PriEngine.Engine.Comercial.Clientes.Existe(cliente.CodCliente) == true)
                     {
 
                         objCli = PriEngine.Engine.Comercial.Clientes.Edita(cliente.CodCliente);
@@ -107,11 +101,10 @@ namespace FirstREST.Lib_Primavera
                         objCli.set_Morada(cliente.Morada);
                         
                         PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
-
-                        erro.Erro = 0;
-                        erro.Descricao = "Sucesso";
-                        return erro;
                     }
+                    erro.Erro = 0;
+                    erro.Descricao = "Sucesso";
+                    return erro;
                 }
                 else
                 {

@@ -59,31 +59,74 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPut]
-        public HttpResponseMessage Put(string id, Lib_Primavera.Model.Cliente cliente)
+        public JsonResult Put(Lib_Primavera.Model.Utilizador utilizador)
         {
+            
 
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
 
             try
             {
+                int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+                var db = new FirstREST.Models.StoreEntities();
+                var myUser = db.Utilizadors
+                    .FirstOrDefault(u => u.Id == userID);
+
+                if (myUser == null)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                 //UPDATE local database
+                myUser.Fullname = utilizador.Fullname;
+                myUser.Email = utilizador.Email;
+                myUser.Address = utilizador.Address;
+                myUser.TaxPayerNumber = utilizador.TaxPayerNumber;
+                db.SaveChanges();
+
+                Lib_Primavera.Model.Cliente cliente = new Cliente();
+                cliente.CodCliente = myUser.Username;
+                cliente.Morada = utilizador.Address;
+                cliente.NomeCliente = utilizador.Fullname;
+                cliente.NumContribuinte = utilizador.TaxPayerNumber.ToString();
+
                 erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
-                if (erro.Erro == 0)
+                if (erro.Erro != 0)
                 {
-                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-                    return response;
+                    throw new InvalidOperationException();
                 }
-                else
-                {
-                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.NotFound);
-                    return response;
-                }
+
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
             }
 
             catch (Exception exc)
             {
-                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.BadRequest);
-                return response;
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        [System.Web.Http.HttpPost]
+        public JsonResult UpdatePassword(string oldPass, string newPass)
+        {
+            string hashOld = GetHashString(oldPass);
+            string newHash = GetHashString(newPass);
+
+            int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+            var db = new FirstREST.Models.StoreEntities();
+            var myUser = db.Utilizadors
+                .FirstOrDefault(u => u.Id == userID);
+
+            if (myUser.Pass.Equals(hashOld))
+            {
+                myUser.Pass = newHash;
+                db.SaveChanges();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
         [System.Web.Http.HttpPost]
@@ -155,7 +198,7 @@ namespace FirstREST.Controllers
                     }
 
                     string idvalue = myUser.Id.ToString();
-                    Response.Cookies["UserId"].Value = idvalue;
+                    Response.Cookies["UserId"].Value = "33";
                     return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }              
             }
