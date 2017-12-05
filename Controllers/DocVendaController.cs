@@ -43,8 +43,21 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public JsonResult Post()
+        public JsonResult Post([FromBody] Lib_Primavera.Model.Cliente cliente)
         {
+            //Create Client
+            String cod = cliente.CodCliente;
+            String name = cliente.NomeCliente;
+            String numContribuite = cliente.NumContribuinte;
+            String morada = cliente.Morada;
+
+            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
+            erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
+
+            if (erro.Erro != 0)
+            {
+                return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+            }
             
             int userID = Int32.Parse(Request.Cookies["UserId"].Value);
             var db = new FirstREST.Models.StoreEntities();
@@ -69,10 +82,10 @@ namespace FirstREST.Controllers
             }
             dv.LinhasDoc = linhas;
 
-            Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
-            erro = Lib_Primavera.PriIntegration.Encomendas_New(dv);
+            Lib_Primavera.Model.RespostaErro erro2 = new Lib_Primavera.Model.RespostaErro();
+            erro2 = Lib_Primavera.PriIntegration.Encomendas_New(dv);
 
-            if (erro.Erro == 0)
+            if (erro2.Erro == 0)
             {
                 foreach (var art in cart)
                 {

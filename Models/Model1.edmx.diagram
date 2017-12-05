@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ab40445d51194ce18938d0e198f86c6d" Name="Diagram1">
-        <EntityTypeShape EntityType="Store.Model.Cart" Width="1.5" PointX="6.375" PointY="0.875" />
         <EntityTypeShape EntityType="Store.Model.Utilizador" Width="1.5" PointX="2.375" PointY="0.625" />
+        <EntityTypeShape EntityType="Store.Model.Cart" Width="1.5" PointX="6.25" PointY="0.875" />
         <AssociationConnector Association="Store.Model.FK_Cart_Product" />
       </Diagram>
     </edmx:Diagrams>

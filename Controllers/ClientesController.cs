@@ -198,7 +198,7 @@ namespace FirstREST.Controllers
                     }
 
                     string idvalue = myUser.Id.ToString();
-                    Response.Cookies["UserId"].Value = "33";
+                    Response.Cookies["UserId"].Value = idvalue;
                     return Json(new { success = true }, JsonRequestBehavior.AllowGet);
                 }              
             }

@@ -58,12 +58,17 @@ function validateLogInOnSubmit(theForm) {
 }
 
 function addProductToCart(theForm) {
+    var quantity = 1;
+    if ($("#quantity").val() > 0) {
+        quantity = $("#quantity").val();
+    }
+    console.log(quantity);
     var artigoModel = {
         CodArtigo: $("#codArtigo").val(),
         DescArtigo:$('#descArtigo').val(), 
         Preco: $("#precoArtigo").val(),
+        Quantidade : quantity
     };
-    console.log(artigoModel);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Artigos/AdicionaArtigoCarrinho',
@@ -108,16 +113,17 @@ function removeProduct(id) {
     return false;
 }
 
-function createPriClient(username,address,name,taxpayernumber) {
+function createPriOrder(username, address, name, taxpayernumber) {
     var j = {
         CodCliente: username,
         NomeCliente: name,
         NumContribuinte: taxpayernumber,
-        Morada : address
+        Morada: address
     };
+    console.log(j);
     $.ajax({
         type: "POST",
-        url: 'http://localhost:49822/Clientes/Post',
+        url: 'http://localhost:49822/DocVenda/Post',
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(j),
         dataType: 'json',
@@ -125,25 +131,6 @@ function createPriClient(username,address,name,taxpayernumber) {
             if (data != null && data.success) {
                 location.href = "http://localhost:49822/ShoppingCart";
                 alert("Order created");
-            } else {
-                alert('An error occurred, please try again!');
-            }
-        },
-        error: function () {
-            alert('An error occurred, please try again!');
-        }
-    });
-    return false;
-}
-
-function createPriOrder() {
-    $.ajax({
-        type: "POST",
-        url: 'http://localhost:49822/DocVenda/Post',
-        dataType: 'json',
-        success: function (data) {
-            if (data != null && data.success) {
-                return true;
             } else {
                 alert('An error occurred, please try again!');
             }

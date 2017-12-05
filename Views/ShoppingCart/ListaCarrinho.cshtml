@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th scope="col">Product</th>
-                <th scope="col">Price</th>
+                <th scope="col">Price (unitary)</th>
                 <th scope="col" class="text-center">Quantity</th>
                 <th></th>
             </tr>
@@ -24,8 +24,8 @@
                     <tr>
                         <td> <a href="~/Artigos/Artigo/@artigo.ProductId">@artigo.ProductName (@artigo.ProductId)</a> </td>
                         <td>  @artigo.ProductPrice €</td>
-                        <td class="text-center"> 1 </td>
-                        <td> <button type="button" class="btn btn-link" onclick="removeProduct('@artigo.ProductId');"> Remove </button> </td>                             
+                        <td class="text-center"> @artigo.Quantity </td>
+                        <td> <button type="button" class="btn btn-link" onclick="removeProduct('@artigo.Id');"> Remove </button> </td>                             
                     </tr>
                 }
                 <tr>
@@ -83,7 +83,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     @{
-                        <button type="button" class="btn btn-primary" onclick="createPriClient('@ViewBag.cliente.Username', '@ViewBag.cliente.Address',' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber'); createPriOrder();">Finalize Order</button>
+                        <button type="button" class="btn btn-primary" onclick="createPriOrder('@ViewBag.cliente.Username', '@ViewBag.cliente.Address', ' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber');">Finalize Order</button>
                     }
                 </div>
             </div>

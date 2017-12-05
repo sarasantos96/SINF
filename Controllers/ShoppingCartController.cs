@@ -32,7 +32,7 @@ namespace FirstREST.Controllers
                          select m;
             double total = 0;
             foreach(var art in cart.ToList()){
-                total += art.ProductPrice;
+                total += art.ProductPrice * art.Quantity;
             }
 
             FirstREST.Models.Utilizador myUser = db.Utilizadors
@@ -50,9 +50,10 @@ namespace FirstREST.Controllers
             try
             {
                 int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+                int rowID = Int32.Parse(id);
                 var db = new FirstREST.Models.StoreEntities();
                 var productCart = db.Carts
-                    .FirstOrDefault(u => u.ClientId == userID && u.ProductId == id);
+                    .FirstOrDefault(u => u.ClientId == userID && u.Id == rowID);
                 db.Carts.Remove(productCart);
                 db.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);

@@ -19,6 +19,7 @@ namespace FirstREST.Models
         public string ProductId { get; set; }
         public string ProductName { get; set; }
         public double ProductPrice { get; set; }
+        public int Quantity { get; set; }
     
         public virtual Utilizador Utilizador { get; set; }
     }

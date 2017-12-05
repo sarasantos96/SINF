@@ -22,6 +22,11 @@
                         @{
                             <p class="category">Category: <span>@ViewBag.artigo.Categoria</span></p>
                             <p class="price">Price: <span>@ViewBag.artigo.Preco</span></p>
+                            <p>
+                                Quantity:
+                                <input type="number" id="quantity" name="quantity" value="1" style="width:50px" />
+                            </p>
+                            
                         }
                         
                         <form id="add_product_form" class="form-horizontal" name="add_product_form" action="#" onsubmit="return addProductToCart(this);">
@@ -29,10 +34,15 @@
                                 <input type="hidden" id="codArtigo" name="codArtigo" value=@ViewBag.artigo.CodArtigo>
                                 <input type="hidden" id="precoArtigo" name="precoArtigo" value=@ViewBag.artigo.Preco>
                                 <input type="hidden" id="descArtigo" name="descArtigo" value=@ViewBag.artigo.DescArtigo>
-                            }                           
-                            <div class="action">
-                                <button type="submit" class="add-to-cart btn btn-info" >Add to Cart</button>
-                            </div>
+                            }        
+                            @{
+                                if (Request.Cookies["UserId"] != null)
+                                {
+                                    <div class="action">
+                                        <button type="submit" class="add-to-cart btn btn-info">Add to Cart</button>
+                                    </div>
+                                }
+                            }                                              
                         </form>
                     </div>
                 </div>
