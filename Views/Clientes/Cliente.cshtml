@@ -8,14 +8,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container">
-        <div class="container-fliud" style="padding: 5%; background-color: lightgrey; border-radius:10px 10px 10px 10px" >
+        <div class="container-fliud" style="padding: 5%; background-color: lightgrey" >
             <div class="row">
                 <div class="previewProduct col-md-6">
                     <img width="400" height="400" style="border-radius:10px 10px 10px 10px" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
                 </div>
                 <div class="user-info col-md-4">
                     @{
-                        <h2 class="user-name"> @ViewBag.cliente.Fullname</h2>
+                        <h2 class="user-name"> @ViewBag.cliente.Fullname </h2>
                         <div class="user-code"><h5>Username: </h5>@ViewBag.cliente.Username</div>
                         <div class="user-email"><h5>Email: </h5>@ViewBag.cliente.Email</div>
                         <div class="user-address"><h5>Address</h5> @ViewBag.cliente.Address</div>
@@ -45,9 +45,20 @@
             {
                 <li class="list-group-item">
                     <div>
-                        <a href="#">Encomenda @encomenda.id</a>
+                        <a href="#">Encomenda @encomenda.DescArtigo</a>
                         <p>NumDoc: @encomenda.NumDoc, Data: @encomenda.Data</p>
-                        <p>Status: @encomenda.Estado</p>
+                        @if (@encomenda.Estado == 'P')
+                        {
+                            <p> Status: Pending Order</p>
+                        }
+
+                        else
+                        {
+                            <p> Status: Shipped</p>
+                        }
+                            
+                          
+                          
                     </div>
                 </li>
             }

@@ -98,6 +98,6 @@ C:\SINF\SINF\bin\System.Web.Razor.xml
 C:\SINF\SINF\bin\System.Web.WebPages.xml
 C:\SINF\SINF\bin\System.Web.WebPages.Deployment.xml
 C:\SINF\SINF\bin\System.Web.WebPages.Razor.xml
+C:\SINF\SINF\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
 C:\SINF\SINF\obj\Debug\FirstREST.dll
 C:\SINF\SINF\obj\Debug\FirstREST.pdb
-C:\SINF\SINF\obj\Debug\FirstREST.csprojResolveAssemblyReference.cache
