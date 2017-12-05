@@ -23,18 +23,7 @@ public partial class StoreEntities : DbContext
     public StoreEntities()
         : base("name=StoreEntities")
     {
-        public StoreEntities()
-            : base("name=StoreEntities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<Utilizador> Utilizadors { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
+
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -43,9 +32,9 @@ public partial class StoreEntities : DbContext
     }
 
 
-    public virtual DbSet<Cart> Carts { get; set; }
-
     public virtual DbSet<Utilizador> Utilizadors { get; set; }
+
+    public virtual DbSet<Cart> Carts { get; set; }
 
 }
 

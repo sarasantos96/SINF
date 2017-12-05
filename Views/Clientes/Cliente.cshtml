@@ -2,68 +2,104 @@
     ViewBag.Title = "My Profile";
 }
 
+
+
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/form_validator.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container">
-        <div class="container-fliud" style="padding: 5%; background-color: lightgrey" >
-            <div class="row">
-                <div class="previewProduct col-md-6">
-                    <img width="400" height="400" style="border-radius:10px 10px 10px 10px" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                </div>
-                <div class="user-info col-md-4">
-                    @{
-                        <h2 class="user-name"> @ViewBag.cliente.Fullname </h2>
-                        <div class="user-code"><h5>Username: </h5>@ViewBag.cliente.Username</div>
-                        <div class="user-email"><h5>Email: </h5>@ViewBag.cliente.Email</div>
-                        <div class="user-address"><h5>Address</h5> @ViewBag.cliente.Address</div>
-                        <div class="user-tax-number"><h5>Tax Payer Number</h5> @ViewBag.cliente.TaxPayerNumber</div>
-                    }
-                    <div class="dropdown" style="margin-top:5%">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                            Update Profile
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" data-toggle="modal" data-target="#changesModal">Change my info</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#passwordModal">Change password</a></li>
-                        </ul>
-                    </div>
+    <div class="container-fliud" style="padding: 5%">
+        <div class="row">
+            <div class="previewProduct col-md-6">
+                <img width="400" height="400" style="border-radius:10px 10px 10px 10px" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+            </div>
+            <div class="user-info col-md-4">
+                @{
+                    <h2 class="user-name"> @ViewBag.cliente.Fullname, @ViewBag.cliente.Username </h2>
+                    <div class="user-email"><h5>@ViewBag.cliente.Email </h5></div>
+                    <div class="user-address"><h5>@ViewBag.cliente.Address </h5></div>
+                    <div class="user-tax-number"><h5>Tax Payer Number: @ViewBag.cliente.TaxPayerNumber </h5></div>
+                }
+                <div class="dropdown" style="margin-top:5%">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Update Profile
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" data-toggle="modal" data-target="#changesModal">Change my info</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#passwordModal">Change password</a></li>
+                    </ul>
                 </div>
             </div>
-        </div>   
+        </div>
+    </div>
 </div>
 
 <div class="container">
-
+    <br />
+    <br />
     <h2>My Orders</h2>
-    <ul class="list-group">
-        @{
-            foreach (var encomenda in @ViewBag.encomendasCliente)
-            {
-                <li class="list-group-item">
-                    <div>
-                        <a href="#">Encomenda @encomenda.DescArtigo</a>
-                        <p>NumDoc: @encomenda.NumDoc, Data: @encomenda.Data</p>
-                        @if (@encomenda.Estado == 'P')
-                        {
-                            <p> Status: Pending Order</p>
-                        }
+    <br />
 
-                        else
-                        {
-                            <p> Status: Shipped</p>
-                        }
-                            
-                          
-                          
-                    </div>
-                </li>
+    @if (@ViewBag.encomendasCliente.Count > 0)
+    {
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
             }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            th {
+                background-color: #dddddd;
+            }
+        </style>
+        
+            <table>
+
+            @{
+        foreach (var encomenda in @ViewBag.encomendasCliente)
+            {
+                <tr>
+                    <th>Order @encomenda.Data</th>
+                    @if (@encomenda.Estado == "P")
+                  {
+                        <th>Status: Pending Order</th>
+                  }
+                  else
+                  {
+                        <th>Status: Shipped</th>
+                  }
+                    <th>Total: @encomenda.TotalMerc</th>
+                </tr>
+                foreach (var artigo in @encomenda.LinhasDoc) {
+                    <tr>
+                        <td>@artigo.DescArtigo</td>
+                        <td>Quantity: @artigo.Quantidade</td>
+                        <td>Price: @artigo.TotalLiquido</td>
+                    </tr>
         }
-    </ul>
+        }
+            }
+        </table>
+    }
+    else
+    {
+        <p>You don't have any orders...</p>
+    }
+    
+    <br />
+    <br />
+    <br />
+
 </div>
 
 

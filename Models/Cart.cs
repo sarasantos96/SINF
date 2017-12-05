@@ -15,28 +15,25 @@ namespace FirstREST.Models
 using System;
     using System.Collections.Generic;
     
-    public partial class Cart
-    {
-        public int Id { get; set; }
-        public int ClientId { get; set; }
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
-    
-        public virtual Utilizador Utilizador { get; set; }
-    }
-}
+public partial class Cart
+{
+
+    public int Id { get; set; }
+
+    public int ClientId { get; set; }
+
+    public string ProductId { get; set; }
+
+    public string ProductName { get; set; }
+
+    public double ProductPrice { get; set; }
+
+    public int Quantity { get; set; }
+
+
+
+    public virtual Utilizador Utilizador { get; set; }
 
 }
 
-    public partial class Cart
-    {
-        public int Id { get; set; }
-        public int ClientId { get; set; }
-        public string ProductId { get; set; }
-        public string ProductName { get; set; }
-        public double ProductPrice { get; set; }
-        public int Quantity { get; set; }
-    
-        public virtual Utilizador Utilizador { get; set; }
-    }
+}
