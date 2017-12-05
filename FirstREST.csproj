@@ -181,11 +181,13 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArmazensController.cs" />
     <Compile Include="Controllers\ArtigosController.cs" />
+    <Compile Include="Controllers\CatalogoController.cs" />
     <Compile Include="Controllers\CategoriaController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\DocCompraController.cs" />
     <Compile Include="Controllers\DocVendaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,6 +195,7 @@
     <Compile Include="Lib_Primavera\Model\Armazem.cs" />
     <Compile Include="Lib_Primavera\Model\ArtigoArmazem.cs" />
     <Compile Include="Lib_Primavera\Model\Categoria.cs" />
+    <Compile Include="Lib_Primavera\Model\Utilizador.cs" />
     <Compile Include="Lib_Primavera\PriIntegration.cs" />
     <Compile Include="Lib_Primavera\Model\Artigo.cs" />
     <Compile Include="Lib_Primavera\Model\Cliente.cs" />
@@ -202,6 +205,9 @@
     <Compile Include="Lib_Primavera\Model\LinhaDocVenda.cs" />
     <Compile Include="Lib_Primavera\Model\RespostaErro.cs" />
     <Compile Include="Lib_Primavera\PriEngine.cs" />
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -387,7 +393,10 @@
     <Content Include="Views\Artigos\ArtigosPorCategoria.cshtml" />
     <Content Include="Views\Catalogo\cenas.cshtml" />
     <Content Include="Views\Clientes\NovoCliente.cshtml" />
-    <Content Include="Views\ShoopingCart\Index.cshtml" />
+    <Content Include="Views\Clientes\LogIn.cshtml" />
+    <Content Include="Views\Clientes\SignUp.cshtml" />
+    <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\ListaCarrinho.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Product\" />
