@@ -192,3 +192,8 @@ function updatePassword() {
     });
     return false;
 }
+
+function loadDefaultImage(obj) {
+
+    document.getElementById(obj.getAttribute('id')).src = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
+}

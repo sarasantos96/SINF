@@ -10,17 +10,7 @@
             <div class="container-fliud" style="padding:15px">
                 <div class="row">
                     <div class="previewProduct col-md-8">
-                        @{
-                            if (@ViewBag.artigo.Imagem == "")
-                            {
-                                <img width="600" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                            }
-                            else
-                            {
-                                <img width="600" src=@ViewBag.artigo.Imagem/>
-                            }
-
-}
+                        <img width="600" id="article_photo" src="~/Images/@{@ViewBag.artigo.CodArtigo}.jpg" onerror="loadDefaultImage(this)" />
                     </div>
                     <div class="descriptionProduct col-md-4">
                         @{
@@ -62,22 +52,15 @@
             <div class="container-fliud" style="padding:15px">
                 <h3 class="product-recommendation">Recommendations</h3>
                 <div class="row">
-                    <div class="rec1 col-md-3">
-                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                        <p>Product Name</p>
-                    </div>
-                    <div class="rec2 col-md-3">
-                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                        <p>Product Name</p>
-                    </div>
-                    <div class="rec3 col-md-3">
-                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                        <p>Product Name</p>
-                    </div>
-                    <div class="rec4 col-md-3">
-                        <img width="250" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-                        <p>Product Name</p>
-                    </div>
+                    @{
+                        foreach (var recomendado in @ViewBag.recomendados)
+                        {
+                            <div class="rec1 col-md-3">
+                                <img width="250" id="article_photo@{@recomendado.CodArtigo}" src="~/Images/@{@recomendado.CodArtigo}.jpg" onerror="loadDefaultImage(this)" />
+                                <a href="~/Artigos/Artigo/@recomendado.CodArtigo">@recomendado.DescArtigo</a>
+</div>
+                        }
+                    }                                    
                 </div>
             </div>
         </div>
