@@ -10,7 +10,17 @@
             <div class="container-fliud" style="padding:15px">
                 <div class="row">
                     <div class="previewProduct col-md-8">
-                        <img width="600" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                        @{
+                            if (@ViewBag.artigo.Imagem == "")
+                            {
+                                <img width="600" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
+                            }
+                            else
+                            {
+                                <img width="600" src=@ViewBag.artigo.Imagem/>
+                            }
+
+}
                     </div>
                     <div class="descriptionProduct col-md-4">
                         @{

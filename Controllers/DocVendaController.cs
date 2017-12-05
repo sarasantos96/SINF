@@ -75,7 +75,7 @@ namespace FirstREST.Controllers
             {
                 LinhaDocVenda l = new LinhaDocVenda();
                 l.CodArtigo = artigo.ProductId;
-                l.Quantidade = 1;
+                l.Quantidade = artigo.Quantity;
                 l.Desconto = 0;
                 l.PrecoUnitario = artigo.ProductPrice;
                 linhas.Add(l);

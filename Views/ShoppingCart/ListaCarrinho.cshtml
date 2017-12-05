@@ -28,6 +28,12 @@
                         <td> <button type="button" class="btn btn-link" onclick="removeProduct('@artigo.Id');"> Remove </button> </td>                             
                     </tr>
                 }
+                if (@ViewBag.carrinho.Count == 0)
+                {
+                    <tr>
+                        <td colspan="4"><div class="text-center"><p style="color:steelblue "><b>Shopping cart is empty</b></p></div></td>
+                    </tr>                   
+                }
                 <tr>
                     <td>
                         <h4>Total: @ViewBag.total €</h4>
@@ -37,7 +43,11 @@
         </tbody>
     </table>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Checkout Cart</button>
+   
+        @if (ViewBag.carrinho.Count > 0)
+        {
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Checkout Cart</button>
+        }
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,9 +91,9 @@
                     }
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="CancelBtn" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     @{
-                        <button type="button" class="btn btn-primary" onclick="createPriOrder('@ViewBag.cliente.Username', '@ViewBag.cliente.Address', ' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber');">Finalize Order</button>
+                        <button type="button" id="CreateOrderBtn" class="btn btn-primary" onclick="createPriOrder('@ViewBag.cliente.Username', '@ViewBag.cliente.Address', ' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber');">Finalize Order</button>
                     }
                 </div>
             </div>

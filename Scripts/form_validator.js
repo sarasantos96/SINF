@@ -7,7 +7,6 @@
         TaxPayerNumber: $("#taxPayerNumber").val(),
         Address: $("#address").val()
     };
-    console.log(utilizadorModel);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/CreateUtilizador',
@@ -62,7 +61,6 @@ function addProductToCart(theForm) {
     if ($("#quantity").val() > 0) {
         quantity = $("#quantity").val();
     }
-    console.log(quantity);
     var artigoModel = {
         CodArtigo: $("#codArtigo").val(),
         DescArtigo:$('#descArtigo').val(), 
@@ -114,13 +112,14 @@ function removeProduct(id) {
 }
 
 function createPriOrder(username, address, name, taxpayernumber) {
+    $('#CancelBtn').attr('disabled', 'disabled');
+    $('#CreateOrderBtn').attr('disabled', 'disabled');
     var j = {
         CodCliente: username,
         NomeCliente: name,
         NumContribuinte: taxpayernumber,
         Morada: address
     };
-    console.log(j);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/DocVenda/Post',
@@ -149,7 +148,6 @@ function updateUser() {
         TaxPayerNumber: $("#taxPayerNumber").val(),
         Address: $("#address").val()
     };
-    console.log(j);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/Put',
@@ -175,7 +173,6 @@ function updatePassword() {
         oldPass: $("#oldpass").val(),
         newPass: $("#newpass").val(),
     };
-    console.log(j);
     $.ajax({
         type: "POST",
         url: 'http://localhost:49822/Clientes/UpdatePassword',

@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using FirstREST.Lib_Primavera.Model;
-
+using System.IO;
 
 namespace FirstREST.Controllers
 {
@@ -27,7 +27,9 @@ namespace FirstREST.Controllers
 
         public ActionResult Artigo(string id)
         {
-            ViewBag.artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
+            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
+            
+            ViewBag.artigo = artigo;
             return View();
         }
 

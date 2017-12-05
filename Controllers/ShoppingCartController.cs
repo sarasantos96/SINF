@@ -39,7 +39,10 @@ namespace FirstREST.Controllers
                 .FirstOrDefault(u => u.Id == userID);
 
             ViewBag.cliente = myUser;
-            ViewBag.carrinho = cart.ToList();
+            List<Models.Cart> carrinho = new List<Models.Cart>();
+            if (cart != null)
+                carrinho = cart.ToList();
+            ViewBag.carrinho = carrinho;
             ViewBag.total = total;
             return View();
         }
