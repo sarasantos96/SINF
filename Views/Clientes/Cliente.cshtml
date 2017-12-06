@@ -9,97 +9,108 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<div class="container">
-    <div class="container-fliud" style="padding: 5%">
-        <div class="row">
-            <div class="previewProduct col-md-6">
-                <img width="400" height="400" style="border-radius:10px 10px 10px 10px" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" />
-            </div>
-            <div class="user-info col-md-4">
-                @{
-                    <h2 class="user-name"> @ViewBag.cliente.Fullname, @ViewBag.cliente.Username </h2>
-                    <div class="user-email"><h5>@ViewBag.cliente.Email </h5></div>
-                    <div class="user-address"><h5>@ViewBag.cliente.Address </h5></div>
-                    <div class="user-tax-number"><h5>Tax Payer Number: @ViewBag.cliente.TaxPayerNumber </h5></div>
-                }
-                <div class="dropdown" style="margin-top:5%">
-                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                        Update Profile
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#" data-toggle="modal" data-target="#changesModal">Change my info</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#passwordModal">Change password</a></li>
-                    </ul>
+
+
+<div class="container align-content-between">
+    <div class="card col-sm-10" style="padding-top:15px;margin-top:20px">
+        <div class="container" style="padding:15px">
+
+            <h2 class="user-name">@ViewBag.cliente.Fullname</h2>
+            <br />
+            <div class="row">
+                <div class="col-sm-5">
+                    <p>Username: @ViewBag.cliente.Username</p>
+                    <p>E-mail: @ViewBag.cliente.Email</p>
                 </div>
+                <div class="col-sm-5">
+                    <p>Address: @ViewBag.cliente.Address</p>
+                    <p>Tax Number: @ViewBag.cliente.TaxPayerNumber</p>
+                    <br />
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Update Profile
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#" data-toggle="modal" data-target="#changesModal">Change my info</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#passwordModal">Change password</a></li>
+                </ul>
             </div>
         </div>
     </div>
+
 </div>
 
-<div class="container">
-    <br />
-    <br />
-    <h2>My Orders</h2>
-    <br />
+<div class="container align-content-between">
+    <div class="row">
+        <div class="col-sm-10">
+            <br />
+            <br />
+            <h2>My Orders</h2>
+            <br />
 
-    @if (@ViewBag.encomendasCliente.Count > 0)
-    {
-        <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-            }
-
-            th {
-                background-color: #dddddd;
-            }
-        </style>
-        
-            <table>
-
-            @{
-        foreach (var encomenda in @ViewBag.encomendasCliente)
+            @if (@ViewBag.encomendasCliente.Count > 0)
             {
-                <tr>
-                    <th>Order @encomenda.Data</th>
-                    @if (@encomenda.Estado == "P")
-                  {
-                        <th>Status: Pending Order</th>
-                  }
-                  else
-                  {
-                        <th>Status: Shipped</th>
-                  }
-                    <th>Total: @encomenda.TotalMerc</th>
-                </tr>
-                foreach (var artigo in @encomenda.LinhasDoc) {
-                    <tr>
-                        <td>@artigo.DescArtigo</td>
-                        <td>Quantity: @artigo.Quantidade</td>
-                        <td>Price: @artigo.TotalLiquido</td>
-                    </tr>
-        }
-        }
-            }
-        </table>
-    }
-    else
-    {
-        <p>You don't have any orders...</p>
-    }
-    
-    <br />
-    <br />
-    <br />
+                <style>
+                    table {
+                        font-family: arial, sans-serif;
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
 
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: left;
+                        padding: 8px;
+                    }
+
+                    th {
+                        background-color: #dddddd;
+                    }
+                </style>
+
+                <table>
+
+                    @{
+                foreach (var encomenda in @ViewBag.encomendasCliente)
+                {
+                    <tr>
+                        <th>Order @encomenda.Data</th>
+                        @if (@encomenda.Estado == "P")
+                        {
+                            <th>Status: Pending Order</th>
+                        }
+                        else
+                        {
+                            <th>Status: Shipped</th>
+                        }
+                        <th>Total: @encomenda.TotalMerc</th>
+                    </tr>
+                    foreach (var artigo in @encomenda.LinhasDoc)
+                    {
+                        <tr>
+                            <td> <a href="~/Artigos/Artigo/@artigo.CodArtigo">@artigo.DescArtigo</a> </td>
+                            <td>Quantity: @artigo.Quantidade</td>
+                            <td>Price: @artigo.TotalLiquido</td>
+                        </tr>
+                    }
+                }
+                    }
+                </table>
+            }
+            else
+            {
+                <p>You don't have any orders...</p>
+            }
+
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
 </div>
 
 
@@ -114,7 +125,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="sign_up_form" class="form-horizontal" name="sign_up_form" action="#" 
+                <form id="sign_up_form" class="form-horizontal" name="sign_up_form" action="#"
                       data-fv-framework="bootstrap"
                       data-fv-icon-valid="glyphicon glyphicon-ok"
                       data-fv-icon-invalid="glyphicon glyphicon-remove"
@@ -142,7 +153,7 @@
                             <div class="form-group">
                                 <label class="control-label" for="taxPayerNumber">Tax Payer Number</label>
                                 <div class="text-center">
-                                    <input id="taxPayerNumber" name="taxPayerNumber" type="number" placeholder="Tax Payer Number"  value="@ViewBag.cliente.TaxPayerNumber" class="form-control " required="">
+                                    <input id="taxPayerNumber" name="taxPayerNumber" type="number" placeholder="Tax Payer Number" value="@ViewBag.cliente.TaxPayerNumber" class="form-control " required="">
 
                                 </div>
                             </div>
