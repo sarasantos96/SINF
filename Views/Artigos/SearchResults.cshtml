@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Search Results";
+}
+
+<div class="text-center" style="margin:3%">
+    <h2>Search results for "@{@ViewBag.query}"</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        @{
+            foreach (var artigo in ViewBag.results)
+            {
+                <div class="text-center col-4">
+                    <div class="item">
+                        <img height="200" width="200" id="article_photo@{@artigo.CodArtigo}" src="~/Images/@{@artigo.CodArtigo}.jpg" onerror="loadDefaultImage(this)" class="img-item">
+                        <div class="info">
+                            <p style="font-size:80%"><a href="~/Artigos/Artigo/@artigo.CodArtigo">@artigo.DescArtigo</a></p>
+                            <p style="font-size:75%"><b>Price:</b> @artigo.Preco€</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

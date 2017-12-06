@@ -63,29 +63,15 @@ namespace FirstREST.Controllers
                 return Json(new { success = false, msg = e.StackTrace }, JsonRequestBehavior.AllowGet);
             }
         }
-        //
-        // GET: /Artigos/
 
-       /* public IEnumerable<Lib_Primavera.Model.Artigo> Get()
+        [System.Web.Http.HttpGet]
+        public ActionResult SearchResults(string query)
         {
-            return Lib_Primavera.PriIntegration.ListaArtigos();
+            List<Lib_Primavera.Model.Artigo> results = Lib_Primavera.PriIntegration.SearchArtigo(query);
+            ViewBag.results = results;
+            ViewBag.query = query;
+            return View();
         }
-
-
-        // GET api/artigo/5    
-        public Artigo Get(string id)
-        {
-            Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
-            if (artigo == null)
-            {
-                throw new HttpResponseException(
-                  Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-            else
-            {
-                return artigo;
-            }
-        }*/
 
     }
 }

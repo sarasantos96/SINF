@@ -230,6 +230,40 @@ namespace FirstREST.Lib_Primavera
         //------------------------------ PRODUCT ------------------------------------------------
         #region Artigo
 
+        public static List<Lib_Primavera.Model.Artigo> SearchArtigo(string query)
+        {
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT a.Artigo as ID, a.Descricao as DescArtigo, a.STKActual as STKActual, ArtigoMoeda.PVP1 as PVP, Familias.Descricao as Categoria FROM  ARTIGO AS a  LEFT JOIN ArtigoMoeda ON ArtigoMoeda.Artigo = a.Artigo LEFT JOIN Familias ON Familias.Familia = a.Familia WHERE a.Descricao LIKE '"+query+"%'");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+                    art.CodArtigo = objList.Valor("ID");
+                    art.DescArtigo = objList.Valor("DescArtigo");
+                    art.STKAtual = objList.Valor("STKActual");
+                    art.Preco = objList.Valor("PVP");
+                    art.Categoria = objList.Valor("Categoria");
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
         //GET product by id
         public static Lib_Primavera.Model.Artigo GetArtigo(string codArtigo)
         {

@@ -1,6 +1,19 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
-<div class="container">
-    @{ Html.RenderAction("ArtigosStock", "Admin"); }
-</div>
+
+ 
+     @if (Request.Cookies["UserId"] == null || Request.Cookies["UserId"].Value != "admin")
+     {
+        <div class="container">
+            @{Html.RenderAction("PermissionDenied", "Error");}
+        </div>
+     }
+     else
+     {
+        <div class="container">
+            @{ Html.RenderAction("ArtigosStock", "Admin"); }
+        </div>
+     }
+     
+

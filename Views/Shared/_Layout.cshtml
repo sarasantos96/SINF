@@ -9,7 +9,8 @@
     <script type="text/javascript" src="~/Scripts/pagination.js"></script>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
-
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/form_validator.js"></script>  
     <title>@ViewBag.Title</title>
     @RenderSection("css", false)
     @Styles.Render("~/Content/css")
@@ -26,8 +27,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0" action="#" onsubmit="return searchProducts(this);">
+                        <input id="searchbar" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
                     </form>                                                 
                 </ul>

@@ -197,3 +197,13 @@ function loadDefaultImage(obj) {
 
     document.getElementById(obj.getAttribute('id')).src = 'http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png';
 }
+
+function searchProducts(theForm) {
+    var query = $("#searchbar").val();
+    console.log(query);
+    if (query != "") {
+        location.href = "http://localhost:49822/Artigos/SearchResults?query=" + query;
+    }
+    
+    return false;
+}
