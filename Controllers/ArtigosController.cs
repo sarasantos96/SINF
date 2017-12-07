@@ -36,6 +36,8 @@ namespace FirstREST.Controllers
 
         public ActionResult ArtigosPorCategoria(string id)
         {
+            ViewBag.categoria = Lib_Primavera.PriIntegration.GetCategoria(id);
+            ViewBag.listaCategorias = Lib_Primavera.PriIntegration.ListaCategorias();
             ViewBag.artigosCategoria = Lib_Primavera.PriIntegration.ListaArtigosCategoria(id);
             return View();
         }

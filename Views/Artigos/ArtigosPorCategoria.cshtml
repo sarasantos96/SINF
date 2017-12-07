@@ -1,23 +1,46 @@
 ﻿@{
-    ViewBag.Title = "ArtigosPorCategoria";
+    ViewBag.Title = "Products";
 }
 
+<div class="container">
+    <div class="text-center" style="margin:3%"><h3>@ViewBag.categoria.NomeCategoria</h3></div>
+    
+    <div class="menu">
+        <div class="row">
+            <div class="col col-md-3">
+                <div class="mini-menu">
 
-<div class="row">
-    @{
-        foreach (var artigo in @ViewBag.artigosCategoria)
-        {
-            <div class="col">
-                <div class="item">
-                    <img height="250" width="200"src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
-                    <div class="info">
-                        <p>@artigo.DescArtigo</p>
-                        <p>@artigo.CodArtigo</p>
-                        <p>@artigo.Preco€</p>
+                    <div class="btn-group-vertical">
+                        @{
+                            foreach (var categoria in ViewBag.listaCategorias)
+                            {
+                                <button type="button" class="btn btn-info" style="border-color:white" onclick="location.href='@Url.Action("ArtigosPorCategoria", "Artigos", new { id = @categoria.CodCategoria })'">@categoria.NomeCategoria</button>
+                            }
+
+                        }
+
                     </div>
                 </div>
             </div>
-        }
-    }
+            <div class="col" style="padding-top:5px">
+                <div class="row">
+                    @{
+                        foreach (var artigo in @ViewBag.artigosCategoria)
+                        {
+                            <div class="col">
+                                <div class="item">
+                                    <img height="200" width="200" id="article_photo@{@artigo.CodArtigo}" src="~/Images/@{@artigo.CodArtigo}.jpg" onerror="loadDefaultImage(this)" class="img-item">
+                                    <div class="info">
+                                        <p style="font-size:80%"><a href="~/Artigos/Artigo/@artigo.CodArtigo">@artigo.DescArtigo</a></p>
+                                        <p style="font-size:75%"><b>Price:</b> @artigo.Preco€</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
 
+            </div>
+        </div>
+    </div>
 </div>
