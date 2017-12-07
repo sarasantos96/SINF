@@ -1,10 +1,38 @@
-﻿<div id="body">
+﻿
+<div class="container-fluid align-content-md-stretch">
+
+    @{
+        <div class="container-fluid" style="padding:15px">
+            
+                <div class="row">
+
+                    @foreach (var categorias in @ViewBag.listaCategorias)
+                    {
+                            <div class="col col-md-3" style="padding-bottom:2%; padding-top:2%">
+                                <div class="item">
+                                    <div class="info">
+                                        <p>@categorias.NomeCategoria</p>
+                                    </div>
+                                    <img height="200" width="260" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
+                                </div>
+                            </div>
+                    }
+                </div>
+           
+        </div>
+    }
+
+</div>
+</div>
+
+
+
+<div id="body">
     <section class="featured">
         <div class="content-wrapper">
-           <a href="/Artigos">Artigos</a><br />
-           <a href="/Categoria">Catalogo</a><br/>
-           <a href="/Clientes">Clientes</a><br/>
+            <a href="/Artigos">Artigos</a><br />
+            <a href="/Categoria">Catalogo</a><br />
+            <a href="/Clientes">Clientes</a><br />
         </div>
     </section>
-
 </div>

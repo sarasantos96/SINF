@@ -10,6 +10,7 @@ namespace FirstREST.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.listaCategorias = Lib_Primavera.PriIntegration.ListaCategorias();
             return View();
         }
     }
