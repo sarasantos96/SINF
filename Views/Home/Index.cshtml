@@ -3,26 +3,27 @@
 
     @{
         <div class="container-fluid" style="padding:15px">
-            
-                <div class="row">
 
-                    @foreach (var categorias in @ViewBag.listaCategorias)
-                    {
-                            <div class="col col-md-3" style="padding-bottom:2%; padding-top:2%">
-                                <div class="item">
-                                    <div class="info">
-                                        <p>@categorias.NomeCategoria</p>
-                                    </div>
-                                    <img height="200" width="260" src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" alt="jacket" class="img-item">
+            <div class="row">
+
+                @foreach (var categorias in @ViewBag.listaCategorias)
+                {
+                    <div class="col col-md-3" style="padding-bottom:2%; padding-top:2%">
+                        <a style="display:block" href="@Url.Action("ArtigosPorCategoria", "Artigos", new { id = @categorias.CodCategoria})">
+                            <div class="item">
+                                <div class="info">
+                                    <p style="font-family: 'Franklin Gothic'; color: lightslategrey">@categorias.NomeCategoria</p>
                                 </div>
+                                <img height="200" width="260" id="categoria@{@categorias.CodCategoria}" src="~/Images/@{@categorias.CodCategoria}.jpg" onerror="loadDefaultImage(this)" alt="jacket" class="img-item">
                             </div>
-                    }
-                </div>
-           
+                        </a>
+                    </div>
+                }
+            </div>
+
         </div>
     }
 
-</div>
 </div>
 
 
