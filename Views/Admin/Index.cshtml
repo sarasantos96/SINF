@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin";
 }
 
  
@@ -11,8 +11,13 @@
      }
      else
      {
-        <div class="container">
-            @{ Html.RenderAction("ArtigosStock", "Admin"); }
+        <div class="row">
+            <div class=".col-md-4">
+                @{ Html.RenderAction("ArtigosStock", "Admin"); }
+            </div>
+            <div class=".col-md-6">
+                @{ Html.RenderAction("Status", "Admin");}
+            </div>
         </div>
      }
      

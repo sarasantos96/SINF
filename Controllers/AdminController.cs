@@ -33,5 +33,12 @@ namespace FirstREST.Controllers
             return View();
         }
 
+        public ActionResult Status()
+        {
+            ViewBag.products = Lib_Primavera.PriIntegration.BestSellers();
+            ViewBag.cat = Lib_Primavera.PriIntegration.BestSellersCategories();
+            return View();
+        }
+
     }
 }

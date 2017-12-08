@@ -229,6 +229,37 @@ namespace FirstREST.Lib_Primavera
         //------------------------------ PRODUCT ------------------------------------------------
         #region Artigo
 
+        public static List<Lib_Primavera.Model.Artigo> BestSellers()
+        {
+            StdBELista objList;
+
+            Model.Artigo art = new Model.Artigo();
+            List<Model.Artigo> listArts = new List<Model.Artigo>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT TOP 10 Artigo.Descricao as Artigo, COUNT(a.Artigo) as Quantidade FROM LinhasDoc AS a LEFT JOIN Artigo ON Artigo.Artigo = a.Artigo GROUP BY Artigo.Descricao ORDER BY COUNT(a.Artigo) DESC");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Artigo();
+                    art.DescArtigo = objList.Valor("Artigo");
+                    art.Quantidade = objList.Valor("Quantidade");
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
+
         public static List<Lib_Primavera.Model.Artigo> SearchArtigo(string query)
         {
             StdBELista objList;
@@ -401,6 +432,37 @@ namespace FirstREST.Lib_Primavera
         //--------------------------- CATEGORIES ----------------------------
 
         #region Categoria
+
+        public static List<Lib_Primavera.Model.Categoria> BestSellersCategories()
+        {
+            StdBELista objList;
+
+            Model.Categoria art = new Model.Categoria();
+            List<Model.Categoria> listArts = new List<Model.Categoria>();
+
+            if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
+            {
+
+                objList = PriEngine.Engine.Consulta("SELECT TOP 5 Familias.Descricao as familia, Count(a.Artigo) as quantidade FROM LinhasDoc AS a JOIN Artigo ON Artigo.Artigo = a.Artigo LEFT JOIN Familias ON Artigo.Familia = Familias.Familia GROUP BY Familias.Descricao ORDER BY COUNT(a.Artigo) DESC");
+
+                while (!objList.NoFim())
+                {
+                    art = new Model.Categoria();
+                    art.NomeCategoria = objList.Valor("familia");
+                    art.Vendas = objList.Valor("quantidade");
+                    listArts.Add(art);
+                    objList.Seguinte();
+                }
+
+                return listArts;
+
+            }
+            else
+            {
+                return null;
+
+            }
+        }
 
         //GET all categories
         public static List<Model.Categoria> ListaCategorias()
