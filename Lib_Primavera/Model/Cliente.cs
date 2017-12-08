@@ -19,12 +19,6 @@ namespace FirstREST.Lib_Primavera.Model
             set;
         }
 
-        public string NumContribuinte
-        {
-            get;
-            set;
-        }
-
         public string Morada
         {
             get;

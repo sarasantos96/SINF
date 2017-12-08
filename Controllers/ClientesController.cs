@@ -81,14 +81,12 @@ namespace FirstREST.Controllers
                 myUser.Fullname = utilizador.Fullname;
                 myUser.Email = utilizador.Email;
                 myUser.Address = utilizador.Address;
-                myUser.TaxPayerNumber = utilizador.TaxPayerNumber;
                 db.SaveChanges();
 
                 Lib_Primavera.Model.Cliente cliente = new Cliente();
                 cliente.CodCliente = myUser.Username;
                 cliente.Morada = utilizador.Address;
                 cliente.NomeCliente = utilizador.Fullname;
-                cliente.NumContribuinte = utilizador.TaxPayerNumber.ToString();
 
                 erro = Lib_Primavera.PriIntegration.UpdCliente(cliente);
                 if (erro.Erro != 0)
@@ -140,12 +138,11 @@ namespace FirstREST.Controllers
                 String fullname = cliente.Fullname;
                 String codCliente = username;
                 String address = cliente.Address;
-                int taxPayerNumber = cliente.TaxPayerNumber;
 
                 string hash = GetHashString(password);
 
                 var db = new FirstREST.Models.StoreEntities();
-                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = hash, Username = username, Fullname = fullname, CodCliente = codCliente, TaxPayerNumber = taxPayerNumber, Address = address  };
+                var blog = new FirstREST.Models.Utilizador { Email = email, Pass = hash, Username = username, Fullname = fullname, CodCliente = codCliente, Address = address};
                 db.Utilizadors.Add(blog);
                 db.SaveChanges();
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
@@ -211,11 +208,6 @@ namespace FirstREST.Controllers
         [System.Web.Http.HttpPost]
         public JsonResult Post([FromBody] Lib_Primavera.Model.Cliente cliente)
         {
-            String cod = cliente.CodCliente;
-            String name = cliente.NomeCliente;
-            String numContribuite = cliente.NumContribuinte;
-            String morada = cliente.Morada;
-
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
 

@@ -4,7 +4,6 @@
         Pass: $("#pass").val(),
         Email: $("#email").val(),
         Fullname: $("#fullname").val(),
-        TaxPayerNumber: $("#taxPayerNumber").val(),
         Address: $("#address").val()
     };
     $.ajax({
@@ -111,13 +110,12 @@ function removeProduct(id) {
     return false;
 }
 
-function createPriOrder(username, address, name, taxpayernumber) {
+function createPriOrder(username, address, name) {
     $('#CancelBtn').attr('disabled', 'disabled');
     $('#CreateOrderBtn').attr('disabled', 'disabled');
     var j = {
         CodCliente: username,
         NomeCliente: name,
-        NumContribuinte: taxpayernumber,
         Morada: address
     };
     $.ajax({
@@ -145,7 +143,6 @@ function updateUser() {
     var j = {
         Email: $("#email").val(),
         Fullname: $("#fullname").val(),
-        TaxPayerNumber: $("#taxPayerNumber").val(),
         Address: $("#address").val()
     };
     $.ajax({

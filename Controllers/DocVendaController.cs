@@ -43,13 +43,20 @@ namespace FirstREST.Controllers
         }
 
         [System.Web.Http.HttpPost]
-        public JsonResult Post([FromBody] Lib_Primavera.Model.Cliente cliente)
+        public JsonResult Post()
         {
-            //Create Client
-            String cod = cliente.CodCliente;
-            String name = cliente.NomeCliente;
-            String numContribuite = cliente.NumContribuinte;
-            String morada = cliente.Morada;
+            int userID = Int32.Parse(Request.Cookies["UserId"].Value);
+            var db = new FirstREST.Models.StoreEntities();
+            var cart = from m in db.Carts
+                       where m.ClientId == userID
+                       select m;
+            var myUser = db.Utilizadors
+                        .FirstOrDefault(u => u.Id == userID);
+
+            Lib_Primavera.Model.Cliente cliente = new Lib_Primavera.Model.Cliente();
+            cliente.CodCliente = myUser.Username;
+            cliente.Morada = myUser.Address;
+            cliente.NomeCliente = myUser.Fullname;
 
             Lib_Primavera.Model.RespostaErro erro = new Lib_Primavera.Model.RespostaErro();
             erro = Lib_Primavera.PriIntegration.InsereClienteObj(cliente);
@@ -59,14 +66,6 @@ namespace FirstREST.Controllers
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
             }
             
-            int userID = Int32.Parse(Request.Cookies["UserId"].Value);
-            var db = new FirstREST.Models.StoreEntities();
-            var cart = from m in db.Carts
-                       where m.ClientId == userID
-                       select m;
-            var myUser = db.Utilizadors
-                        .FirstOrDefault(u => u.Id == userID);
-
             DocVenda dv = new DocVenda();
             dv.Entidade = myUser.Username;
             List<LinhaDocVenda> linhas = new List<LinhaDocVenda>();

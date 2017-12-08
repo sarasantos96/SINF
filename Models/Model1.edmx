@@ -26,7 +26,6 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CodCliente" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TaxPayerNumber" Type="bigint" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cart_Product">
@@ -54,27 +53,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Store.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="StoreEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Utilizadors" EntityType="Store.Model.Utilizador" />
           <EntitySet Name="Carts" EntityType="Store.Model.Cart" />
+          <EntitySet Name="Utilizadors" EntityType="Store.Model.Utilizador" />
           <AssociationSet Name="FK_Cart_Product" Association="Store.Model.FK_Cart_Product">
             <End Role="Utilizador" EntitySet="Utilizadors" />
             <End Role="Cart" EntitySet="Carts" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Utilizador">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CodCliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TaxPayerNumber" Type="Int64" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Carts" Relationship="Store.Model.FK_Cart_Product" FromRole="Utilizador" ToRole="Cart" />
-        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="Id" />
@@ -86,6 +71,19 @@
           <Property Name="ProductPrice" Type="Double" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Utilizador" Relationship="Store.Model.FK_Cart_Product" FromRole="Cart" ToRole="Utilizador" />
+        </EntityType>
+        <EntityType Name="Utilizador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CodCliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carts" Relationship="Store.Model.FK_Cart_Product" FromRole="Utilizador" ToRole="Cart" />
         </EntityType>
         <Association Name="FK_Cart_Product">
           <End Type="Store.Model.Utilizador" Role="Utilizador" Multiplicity="1" />
@@ -105,20 +103,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="StoreModelStoreContainer" CdmEntityContainer="StoreEntities">
-          <EntitySetMapping Name="Utilizadors">
-            <EntityTypeMapping TypeName="Store.Model.Utilizador">
-              <MappingFragment StoreEntitySet="Utilizador">
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="TaxPayerNumber" ColumnName="TaxPayerNumber" />
-                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Pass" ColumnName="Pass" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="Store.Model.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -127,6 +111,19 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilizadors">
+            <EntityTypeMapping TypeName="Store.Model.Utilizador">
+              <MappingFragment StoreEntitySet="Utilizador">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CodCliente" ColumnName="CodCliente" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

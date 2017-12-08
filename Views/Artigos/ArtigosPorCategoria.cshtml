@@ -27,14 +27,16 @@
                     @{
                         foreach (var artigo in @ViewBag.artigosCategoria)
                         {
-                            <div class="col">
-                                <div class="item">
-                                    <img height="200" width="200" id="article_photo@{@artigo.CodArtigo}" src="~/Images/@{@artigo.CodArtigo}.jpg" onerror="loadDefaultImage(this)" class="img-item">
-                                    <div class="info">
-                                        <p style="font-size:80%"><a href="~/Artigos/Artigo/@artigo.CodArtigo">@artigo.DescArtigo</a></p>
-                                        <p style="font-size:75%"><b>Price:</b> @artigo.Preco€</p>
+                            <div class="col-4">
+                                <a style="display:block" href="~/Artigos/Artigo/@artigo.CodArtigo">
+                                    <div class="item">
+                                        <img height="200" width="200" id="article_photo@{@artigo.CodArtigo}" src="~/Images/@{@artigo.CodArtigo}.jpg" onerror="loadDefaultImage(this)" class="img-item">
+                                        <div class="info">
+                                            <p style="font-size:80%"><b>@artigo.DescArtigo</b></p>
+                                            <p style="font-size:75%"><b>Price:</b> @artigo.Preco€</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         }
                     }

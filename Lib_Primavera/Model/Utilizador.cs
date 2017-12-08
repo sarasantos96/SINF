@@ -34,11 +34,6 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
-        public int TaxPayerNumber
-        {
-            get;
-            set;
-        }
         public string Address
         {
             get;

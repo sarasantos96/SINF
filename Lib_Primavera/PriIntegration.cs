@@ -30,7 +30,7 @@ namespace FirstREST.Lib_Primavera
 
                 //objList = PriEngine.Engine.Comercial.Clientes.LstClientes();
 
-                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome, NumContrib as NumContribuinte FROM  CLIENTES");
+                objList = PriEngine.Engine.Consulta("SELECT Cliente, Nome FROM  CLIENTES");
 
                 
                 while (!objList.NoFim())
@@ -39,7 +39,6 @@ namespace FirstREST.Lib_Primavera
                     {
                         CodCliente = objList.Valor("Cliente"),
                         NomeCliente = objList.Valor("Nome"),
-                        NumContribuinte = objList.Valor("NumContribuinte"),
                     });
                     objList.Seguinte();
 
@@ -63,12 +62,11 @@ namespace FirstREST.Lib_Primavera
 
             if (PriEngine.InitializeCompany(FirstREST.Properties.Settings.Default.Company.Trim(), FirstREST.Properties.Settings.Default.User.Trim(), FirstREST.Properties.Settings.Default.Password.Trim()) == true)
             {
-                objCli = PriEngine.Engine.Consulta("SELECT c.Cliente as ID, c.Nome as NomeCliente, c.NumContrib as NumbContrib, c.Fac_Mor as Morada FROM CLIENTES AS c WHERE c.Cliente ='" + codCliente + "'");
+                objCli = PriEngine.Engine.Consulta("SELECT c.Cliente as ID, c.Nome as NomeCliente, c.Fac_Mor as Morada FROM CLIENTES AS c WHERE c.Cliente ='" + codCliente + "'");
 
                 myCli.CodCliente = objCli.Valor("ID");
                 myCli.Morada = objCli.Valor("Morada");
                 myCli.NomeCliente = objCli.Valor("NomeCliente");
-                myCli.NumContribuinte = objCli.Valor("NumbContrib");
                 
                 return myCli;                
             }
@@ -97,7 +95,6 @@ namespace FirstREST.Lib_Primavera
                         objCli.set_EmModoEdicao(true);
 
                         objCli.set_Nome(cliente.NomeCliente);
-                        objCli.set_NumContribuinte(cliente.NumContribuinte);
                         objCli.set_Morada(cliente.Morada);
                         
                         PriEngine.Engine.Comercial.Clientes.Actualiza(objCli);
@@ -190,11 +187,13 @@ namespace FirstREST.Lib_Primavera
                     {
                         myCli.set_Cliente(cli.CodCliente);
                         myCli.set_Nome(cli.NomeCliente);
-                        myCli.set_NumContribuinte(cli.NumContribuinte);
                         myCli.set_Morada(cli.Morada);
                         myCli.set_Moeda("EUR");
                         myCli.set_ModoPag("DEP");
                         myCli.set_CondPag("2");
+                        //myCli.set_CodigoPostal("4420-527");
+                        myCli.set_Pais("PT");
+                        myCli.set_Localidade("Porto");
 
                         PriEngine.Engine.Comercial.Clientes.Actualiza(myCli);
                     }

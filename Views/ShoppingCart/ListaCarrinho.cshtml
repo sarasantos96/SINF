@@ -79,10 +79,6 @@
                                     <td><p>@ViewBag.cliente.Address</p></td>
                                 </tr>
                                 <tr>
-                                    <td><p><b>Tax Payer Number:</b></p></td>
-                                    <td><p>@ViewBag.cliente.TaxPayerNumber</p></td>
-                                </tr>
-                                <tr>
                                     <td><p><b>Total:</b></p></td>
                                     <td><p>@ViewBag.total €</p></td>
                                 </tr>
@@ -93,7 +89,7 @@
                 <div class="modal-footer">
                     <button type="button" id="CancelBtn" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     @{
-                        <button type="button" id="CreateOrderBtn" class="btn btn-primary" onclick="createPriOrder('@ViewBag.cliente.Username', '@ViewBag.cliente.Address', ' @ViewBag.cliente.Fullname', '@ViewBag.cliente.TaxPayerNumber');">Finalize Order</button>
+                        <button type="button" id="CreateOrderBtn" class="btn btn-primary" onclick="createPriOrder('@ViewBag.cliente.Username', '@ViewBag.cliente.Address', ' @ViewBag.cliente.Fullname');">Finalize Order</button>
                     }
                 </div>
             </div>
