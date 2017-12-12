@@ -191,7 +191,7 @@ namespace FirstREST.Lib_Primavera
                         myCli.set_Moeda("EUR");
                         myCli.set_ModoPag("DEP");
                         myCli.set_CondPag("2");
-                        //myCli.set_CodigoPostal("4420-527");
+                        myCli.set_CodigoPostal("4420-527");
                         myCli.set_Pais("PT");
                         myCli.set_Localidade("Porto");
 
