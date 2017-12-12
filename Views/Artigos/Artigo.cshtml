@@ -34,8 +34,8 @@
                                 <input type="hidden" id="codArtigo" name="codArtigo" value=@ViewBag.artigo.CodArtigo>
                                 <input type="hidden" id="precoArtigo" name="precoArtigo" value=@ViewBag.artigo.Preco>
                                 <input type="hidden" id="descArtigo" name="descArtigo" value=@ViewBag.artigo.DescArtigo>
-                            }   
-                            <a href="#" data-toggle="modal" data-target="#warehouseModal">Check availability</a>     
+                            }
+                            <a href="#" data-toggle="modal" data-target="#warehouseModal">Check availability</a>  
                             @{
                                 if (Request.Cookies["UserId"] != null)
                                 {
@@ -78,7 +78,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                @{
+       
+            
+                @if (@ViewBag.armazens.Count == 0)
+                {
+                    <div class="text-center">
+                        <p>This product is currently unavailable!</p>
+                        <h5>Your order may take longer to be shipped...</h5>
+                    </div>
+                }
+                else
+                {
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -87,12 +97,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach(var armazem in @ViewBag.armazens){
+                            @foreach (var armazem in @ViewBag.armazens)
+                            {
                                 <tr>
                                     <td> <p><b>@armazem.Descricao</b></p></td>
                                     <td> <p>@armazem.STKAtual</p></td>
                                 </tr>
-                            }        
+                            }
                         </tbody>
                     </table>
                 }
