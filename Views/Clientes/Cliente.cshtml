@@ -87,7 +87,7 @@
                     foreach (var artigo in @encomenda.LinhasDoc)
                     {
                         <tr>
-                            <td> <a href="~/Artigos/Artigo/@artigo.CodArtigo">@artigo.DescArtigo</a> </td>
+                            <td> <a href="~/Artigos/Artigo?id=@artigo.CodArtigo">@artigo.DescArtigo</a> </td>
                             <td>Quantity: @artigo.Quantidade</td>
                             <td>Price: @artigo.TotalLiquido</td>
                         </tr>

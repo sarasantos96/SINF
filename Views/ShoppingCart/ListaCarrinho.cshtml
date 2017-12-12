@@ -22,7 +22,7 @@
                 foreach (var artigo in @ViewBag.carrinho)
                 {
                     <tr>
-                        <td> <a href="~/Artigos/Artigo/@artigo.ProductId">@artigo.ProductName (@artigo.ProductId)</a> </td>
+                        <td> <a href="~/Artigos/Artigo?id=@artigo.ProductId">@artigo.ProductName (@artigo.ProductId)</a> </td>
                         <td>  @artigo.ProductPrice €</td>
                         <td class="text-center"> @artigo.Quantity </td>
                         <td> <button type="button" class="btn btn-link" onclick="removeProduct('@artigo.Id');"> Remove </button> </td>                             
