@@ -29,8 +29,11 @@ namespace FirstREST.Controllers
         {
             Lib_Primavera.Model.Artigo artigo = Lib_Primavera.PriIntegration.GetArtigo(id);
             List<Lib_Primavera.Model.Artigo> recomendados = Lib_Primavera.PriIntegration.ListaTop4ArtigosCategoria(artigo.Categoria,artigo.CodArtigo);
+            List<Lib_Primavera.Model.Armazem> armazens = Lib_Primavera.PriIntegration.ListaArmazensProduto(id);
             ViewBag.artigo = artigo;
             ViewBag.recomendados = recomendados;
+            ViewBag.armazens = armazens;
+            ViewBag.categoria = Lib_Primavera.PriIntegration.GetCategoria(artigo.Categoria);
             return View();
         }
 

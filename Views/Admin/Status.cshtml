@@ -2,7 +2,9 @@
     ViewBag.Title = "Status";
 }
 
-<h2>Statistics</h2>
+<div class="text-center">
+    <h2>Statistics</h2>
+</div>
 
 
 
@@ -26,7 +28,7 @@
         ]);
         console.log(data);
         // Optional; add a title and set the width and height of the chart
-        var options = { 'title': 'Categories with most sales', 'width': 550, 'height': 400 };
+        var options = { 'title': 'Top 5 Categories', 'width': 550, 'height': 400 };
 
         // Display the chart inside the <div> element with id="piechart"
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -47,7 +49,7 @@
            ['@ViewBag.products[4].DescArtigo', @ViewBag.products[4].Quantidade]
         ]);
 
-        var options = { title: 'Products with most sales' };
+        var options = { title: 'Top 5 Products' };
 
         // Instantiate and draw the chart.
         var chart = new google.visualization.BarChart(document.getElementById('container'));

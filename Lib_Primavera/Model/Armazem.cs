@@ -30,5 +30,11 @@ namespace FirstREST.Lib_Primavera.Model
             get;
             set;
         }
+
+        public double STKAtual
+        {
+            get;
+            set;
+        }
     }
 }
